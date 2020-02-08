@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+  <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>by.larchanka.tiptopcleaning.controller.Controller</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/controller</url-pattern>
+    <url-pattern>/profile</url-pattern>
+    <url-pattern>/catalog</url-pattern>
+    <url-pattern>/catalog-items</url-pattern>
+    <url-pattern>/orders</url-pattern>
+    <url-pattern>/users</url-pattern>
+    <url-pattern>/all-orders</url-pattern>
+    <url-pattern>/all-promocodes</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>MainPage</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MainPage</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Money</servlet-name>
+    <jsp-file>/WEB-INF/jsp/money.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Money</servlet-name>
+    <url-pattern>/money</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Registration</servlet-name>
+    <jsp-file>/WEB-INF/jsp/registration.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Registration</servlet-name>
+    <url-pattern>/registration</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Authentication</servlet-name>
+    <jsp-file>/WEB-INF/jsp/authentication.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Authentication</servlet-name>
+    <url-pattern>/authentication</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>About</servlet-name>
+    <jsp-file>/WEB-INF/jsp/about.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>About</servlet-name>
+    <url-pattern>/about</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.EncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>NotificationsFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.NotificationsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NotificationsFilter</filter-name>
+    <url-pattern>/authentication</url-pattern>
+    <url-pattern>/all-orders</url-pattern>
+    <url-pattern>/all-promocodes</url-pattern>
+    <url-pattern>/catalog-items</url-pattern>
+    <url-pattern>/registration</url-pattern>
+    <url-pattern>/admin</url-pattern>
+    <url-pattern>/profile</url-pattern>
+    <url-pattern>/promocode</url-pattern>
+    <url-pattern>/orders</url-pattern>
+    <url-pattern>/money</url-pattern>
+    <url-pattern>/catalog</url-pattern>
+    <url-pattern>/users</url-pattern>
+    <url-pattern>/home</url-pattern>
+  </filter-mapping>
+
+    <filter>
+      <filter-name>AuthenticationFilter</filter-name>
+      <filter-class>by.larchanka.tiptopcleaning.filter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+      <filter-name>AuthenticationFilter</filter-name>
+      <url-pattern>/registration</url-pattern>
+      <url-pattern>/authentication</url-pattern>
+    </filter-mapping>
+
+  <filter>
+    <filter-name>EmptySessionFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.EmptySessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>EmptySessionFilter</filter-name>
+    <url-pattern>/all-orders</url-pattern>
+    <url-pattern>/all-promocodes</url-pattern>
+    <url-pattern>/catalog-items</url-pattern>
+    <url-pattern>/profile</url-pattern>
+    <url-pattern>/orders</url-pattern>
+    <url-pattern>/money</url-pattern>
+    <url-pattern>/admin</url-pattern>
+    <url-pattern>/users</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>AdminFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.AdminFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/users</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>ManagerFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.ManagerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <url-pattern>/all-orders</url-pattern>
+    <url-pattern>/all-promocodes</url-pattern>
+    <url-pattern>/catalog-items</url-pattern>
+  </filter-mapping>
+
+
+  <servlet>
+    <servlet-name>Error</servlet-name>
+    <jsp-file>/WEB-INF/jsp/error.jsp</jsp-file>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Error</servlet-name>
+    <url-pattern>/error</url-pattern>
+  </servlet-mapping>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/jsp/error.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/not_found.jsp</location>
+  </error-page>
+</web-app>
