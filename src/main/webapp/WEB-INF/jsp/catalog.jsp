@@ -162,7 +162,7 @@
         <div style="margin-top: 100px">
             <label style="font-size: 20px">${promoCode}</label>
             <input style="width: 300px;" class="form-control" autocomplete="off" type="text" name="promo_code"
-                   placeholder="JAVA">
+                   placeholder="PROMO">
         </div>
 
         <br>
