@@ -4,7 +4,6 @@ import by.larchanka.tiptopcleaning.dao.impl.AccountDaoImpl;
 import by.larchanka.tiptopcleaning.dao.impl.AccountOrderDaoImpl;
 import by.larchanka.tiptopcleaning.dao.impl.CatalogItemDaoImpl;
 import by.larchanka.tiptopcleaning.dao.impl.PromoCodeDaoImpl;
-import by.larchanka.tiptopcleaning.entity.PromoCode;
 
 public class DaoCreator {
     private static final DaoCreator INSTANCE = new DaoCreator();

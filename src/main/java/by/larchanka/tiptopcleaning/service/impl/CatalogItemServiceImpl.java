@@ -3,7 +3,6 @@ package by.larchanka.tiptopcleaning.service.impl;
 import by.larchanka.tiptopcleaning.dao.CatalogItemDao;
 import by.larchanka.tiptopcleaning.dao.DaoCreator;
 import by.larchanka.tiptopcleaning.dao.DaoException;
-import by.larchanka.tiptopcleaning.dao.PromoCodeDao;
 import by.larchanka.tiptopcleaning.entity.CatalogItem;
 import by.larchanka.tiptopcleaning.service.CatalogItemService;
 import by.larchanka.tiptopcleaning.service.ServiceException;

@@ -1,8 +1,8 @@
 package by.larchanka.tiptopcleaning.service;
 
 import by.larchanka.tiptopcleaning.service.impl.AccountOrderServiceImpl;
-import by.larchanka.tiptopcleaning.service.impl.CatalogItemServiceImpl;
 import by.larchanka.tiptopcleaning.service.impl.AccountServiceImpl;
+import by.larchanka.tiptopcleaning.service.impl.CatalogItemServiceImpl;
 import by.larchanka.tiptopcleaning.service.impl.PromoCodeServiceImpl;
 
 public class ServiceStorage {

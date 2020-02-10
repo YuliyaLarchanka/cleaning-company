@@ -1,7 +1,6 @@
 package by.larchanka.tiptopcleaning.service;
 
 import by.larchanka.tiptopcleaning.entity.CatalogItem;
-import by.larchanka.tiptopcleaning.entity.PromoCode;
 
 import java.util.List;
 import java.util.Optional;

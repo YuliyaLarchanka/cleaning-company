@@ -5,9 +5,8 @@ import by.larchanka.tiptopcleaning.dao.DaoCreator;
 import by.larchanka.tiptopcleaning.dao.DaoException;
 import by.larchanka.tiptopcleaning.entity.User;
 import by.larchanka.tiptopcleaning.entity.UserType;
-import by.larchanka.tiptopcleaning.service.PromoCodeService;
-import by.larchanka.tiptopcleaning.service.ServiceException;
 import by.larchanka.tiptopcleaning.service.AccountService;
+import by.larchanka.tiptopcleaning.service.ServiceException;
 import by.larchanka.tiptopcleaning.service.ServiceStorage;
 import by.larchanka.tiptopcleaning.validation.ServiceValidator;
 

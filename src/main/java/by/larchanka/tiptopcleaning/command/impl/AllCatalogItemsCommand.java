@@ -12,7 +12,6 @@ import java.util.List;
 
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.CATALOG_ITEM_LIST;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_ERROR;
-import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_REAL_CATALOG;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_REAL_CATALOG_ITEMS;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
 

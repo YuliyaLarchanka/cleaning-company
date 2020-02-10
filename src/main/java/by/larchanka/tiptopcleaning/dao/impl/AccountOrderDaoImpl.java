@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ID;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_DATE_TIME;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_ID;
@@ -41,7 +42,6 @@ import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CI;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_OI;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ORDER_ITEM;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ORDER_ITEM_AMOUNT;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ID;
 
 public class AccountOrderDaoImpl implements AccountOrderDao {
     private static final Logger logger = LogManager.getLogger();

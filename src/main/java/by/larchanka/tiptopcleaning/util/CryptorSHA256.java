@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static by.larchanka.tiptopcleaning.util.CommonConstant.ENCODING_UTF_8;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.SHA;
 
 public class CryptorSHA256 {

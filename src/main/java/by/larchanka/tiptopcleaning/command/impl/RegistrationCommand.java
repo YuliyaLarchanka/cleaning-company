@@ -22,7 +22,6 @@ import static by.larchanka.tiptopcleaning.command.PageParameterConstant.LAST_NAM
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.PASSWORD;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.USER_ID;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_HOME;
-import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_PROFILE;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_REGISTRATION;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_REGISTRATION_ERROR;

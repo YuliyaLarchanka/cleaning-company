@@ -18,9 +18,9 @@ import by.larchanka.tiptopcleaning.command.impl.FindAllPromoCodes;
 import by.larchanka.tiptopcleaning.command.impl.FindCatalogItemsCommand;
 import by.larchanka.tiptopcleaning.command.impl.FindUserInfoCommand;
 import by.larchanka.tiptopcleaning.command.impl.FindUserOrdersCommand;
+import by.larchanka.tiptopcleaning.command.impl.FindUsersCommand;
 import by.larchanka.tiptopcleaning.command.impl.LogoutCommand;
 import by.larchanka.tiptopcleaning.command.impl.RegistrationCommand;
-import by.larchanka.tiptopcleaning.command.impl.FindUsersCommand;
 
 public enum CommandName {
     REGISTER_USER(new RegistrationCommand()),

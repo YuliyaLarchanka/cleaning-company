@@ -4,7 +4,6 @@ import by.larchanka.tiptopcleaning.command.Command;
 import by.larchanka.tiptopcleaning.command.CommandName;
 import by.larchanka.tiptopcleaning.command.CommandResponse;
 import by.larchanka.tiptopcleaning.connection.ConnectionPool;
-import by.larchanka.tiptopcleaning.connection.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,10 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.COMMAND_NAME;
-import static by.larchanka.tiptopcleaning.util.CommonConstant.CONTENT_TYPE_TEXT_HTML;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.DASH;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.EMPTY;
-import static by.larchanka.tiptopcleaning.util.CommonConstant.ENCODING_UTF_8;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.ERROR_KEY;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.ERROR_RESPONSE;
 import static by.larchanka.tiptopcleaning.util.CommonConstant.SUCCESS_KEY;
@@ -33,13 +30,7 @@ public class Controller extends HttpServlet {
 
     @Override
     public void init() {
-        //try {
-            ConnectionPool connectionPool = ConnectionPool.getInstance();
-            //connectionPool.createPoll();
-//        } catch (ConnectionPoolException e) {
-//            logger.fatal(e);
-//            throw new RuntimeException(e);
-//        }
+        ConnectionPool.getInstance();
     }
 
     @Override

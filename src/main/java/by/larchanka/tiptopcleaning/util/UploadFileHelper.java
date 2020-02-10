@@ -16,7 +16,7 @@ public class UploadFileHelper {
             uploadDir.mkdir();
         }
 
-        Optional<String> imageNameOptional = null;
+        Optional<String> imageNameOptional;
         try {
             Part filePart = request.getPart("image");
             imageNameOptional = getFileName(filePart);

@@ -5,10 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -39,7 +37,7 @@ public class ConnectionPool {
         reservedConnections = new LinkedBlockingQueue<>(pollSize);
 
         try {
-            Class.forName(ConnectionParameter.getDriver());//загружаем класс Driver и одновременно регистрируем драйвер
+            Class.forName(ConnectionParameter.getDriver());
 
             for (int i = 0; i < pollSize; i++) {
                 try {
@@ -47,12 +45,10 @@ public class ConnectionPool {
                     availableConnections.offer(new ProxyConnection(connection));
                 } catch (SQLException e) {
                     logger.fatal(e);
-                    //throw new ConnectionPoolException(e);
                 }
             }
         } catch (ClassNotFoundException e) {
             logger.fatal(e);
-            //throw new ConnectionPoolException(e);
         }
     }
 

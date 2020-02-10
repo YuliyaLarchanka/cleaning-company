@@ -17,7 +17,6 @@ import static by.larchanka.tiptopcleaning.command.PageParameterConstant.EMAIL;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.PASSWORD;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.USER_ID;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_AUTHENTICATION;
-import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_CATALOG;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_HOME;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_AUTHENTICATION_SUCCESS;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
