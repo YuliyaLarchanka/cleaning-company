@@ -61,7 +61,7 @@ public class CatalogItemDaoImpl implements CatalogItemDao {
                     SQL_CATALOG_ITEM_IMAGE_NAME + ") VALUES (?, ?, ?, ?, ?)";
 
     private final static String UPDATE_CATALOG_ITEM_COMMAND = "UPDATE catalog_item SET name = ?," +
-            " price = ?, multiple_supported = ?, image_name = ?," +
+            " price = ?, multiple_supported = ?, image_name = ?" +
             " WHERE catalog_item_id = ?";
 
     @Override

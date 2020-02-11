@@ -10,7 +10,7 @@ import java.util.Optional;
 public class UploadFileHelper {
     public Optional<String> uploadFile(HttpServletRequest request){
         String root = request.getServletContext().getRealPath("/");
-        String uploadPath = root + File.separator + "img" + File.separator + "items";
+        String uploadPath = root + "img" + File.separator + "items";
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdir();

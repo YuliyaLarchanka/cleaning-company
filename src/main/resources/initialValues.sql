@@ -1,5 +1,5 @@
 INSERT INTO account (account_type, first_name, last_name, email, account_password, money)
- VALUES (0, "Юлия", "Ларченко", "lar4enko.yulya@gmail.com", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 300),
+ VALUES (0, "Юлия", "Ларченко", "lar4enko.yulya@gmail.com", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 500),
         (0, "Fibi", "Buffe", "fibi@gmail.com", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 0),
 		(0, "Alex", "Claw", "alex@gmail.com", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 0),
 		(2, "Kate", "Bannet", "admin@gmail.com", "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3", 0),

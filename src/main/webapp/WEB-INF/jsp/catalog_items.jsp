@@ -209,7 +209,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="controller" id="itemEdit">
+                <form method="post" action="controller" id="itemEdit" enctype="multipart/form-data">
                     <label>Name</label>
                     <input class="form-control" autocomplete="off" style="width: 300px;" minlength="2" maxlength="30" type="text" name="name"
                            id="name" required="required"/>
@@ -227,7 +227,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" class="btn btn-primary" form="itemEdit">Save changes</button>
             </div>
         </div>
     </div>

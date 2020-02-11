@@ -29,7 +29,7 @@ public class EditCatalogItemByIdCommand implements Command {
 
         long id = Long.parseLong(request.getParameter(CATALOG_ITEM_ID));
         String name = request.getParameter(CATALOG_ITEM_NAME);
-        boolean multipleSupported = Boolean.parseBoolean(request.getParameter(CATALOG_ITEM_MULTIPLE_SUPPORTED));
+        boolean multipleSupported = request.getParameter(CATALOG_ITEM_MULTIPLE_SUPPORTED) != null;
         BigDecimal price = BigDecimal.valueOf(Double.parseDouble(request.getParameter(CATALOG_ITEM_PRICE)));
 
         UploadFileHelper uploadFileHelper = new UploadFileHelper();
