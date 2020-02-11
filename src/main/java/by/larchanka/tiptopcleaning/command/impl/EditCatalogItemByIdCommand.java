@@ -35,7 +35,7 @@ public class EditCatalogItemByIdCommand implements Command {
         UploadFileHelper uploadFileHelper = new UploadFileHelper();
         Optional<String> imageNameOptional = uploadFileHelper.uploadFile(request);
 
-        String imageName = null;
+        String imageName;
         if (imageNameOptional.isPresent()) {
             imageName = imageNameOptional.get();
         } else {
@@ -47,8 +47,8 @@ public class EditCatalogItemByIdCommand implements Command {
 
         CatalogItem updatedCatalogItem = new CatalogItem();
         updatedCatalogItem.setName(name);
-        updatedCatalogItem.setMultipleSupported(multipleSupported);
         updatedCatalogItem.setPrice(price);
+        updatedCatalogItem.setMultipleSupported(multipleSupported);
         updatedCatalogItem.setImageName(imageName);
         updatedCatalogItem.setId(id);
 

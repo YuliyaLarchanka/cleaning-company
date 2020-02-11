@@ -37,7 +37,7 @@ public class CreateCatalogItemCommand implements Command {
         UploadFileHelper uploadFileHelper = new UploadFileHelper();
         Optional<String> imageNameOptional = uploadFileHelper.uploadFile(request);
 
-        String imageName = null;
+        String imageName;
         if (imageNameOptional.isPresent()) {
             imageName = imageNameOptional.get();
         } else {

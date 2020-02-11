@@ -24,7 +24,6 @@ public class DeletePromoCodeByIdCommand implements Command {
 
         CommandResponse commandResponse = new CommandResponse();
 
-
         try {
             boolean isDeleted = promoCodeService.deletePromoCodeById(id);
 

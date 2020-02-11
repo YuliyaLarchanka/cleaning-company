@@ -1,6 +1,7 @@
 package by.larchanka.tiptopcleaning.command.impl;
 
 import by.larchanka.tiptopcleaning.command.Command;
+import by.larchanka.tiptopcleaning.command.CommandHelper;
 import by.larchanka.tiptopcleaning.command.CommandResponse;
 import by.larchanka.tiptopcleaning.entity.User;
 import by.larchanka.tiptopcleaning.entity.UserType;
@@ -10,22 +11,16 @@ import by.larchanka.tiptopcleaning.service.ServiceStorage;
 import by.larchanka.tiptopcleaning.util.CryptorSHA256;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-import static by.larchanka.tiptopcleaning.command.PageParameterConstant.ACCOUNT_TYPE;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.CONFIRM_PASSWORD;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.EMAIL;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.FIRST_NAME;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.LAST_NAME;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.PASSWORD;
-import static by.larchanka.tiptopcleaning.command.PageParameterConstant.USER_ID;
-import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_HOME;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_REGISTRATION;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
-import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_REGISTRATION_ERROR;
-import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_REGISTRATION_SUCCESS;
 
 public class RegistrationCommand implements Command {
     @Override
@@ -47,18 +42,10 @@ public class RegistrationCommand implements Command {
 
         try {
             Optional<User> userOptional = accountService.addUser(registerUser, confirmationPassword);
-
             if (userOptional.isPresent()) {
-                commandResponse.setMessage(KEY_REGISTRATION_SUCCESS);
-                HttpSession session = request.getSession(true);
-                User registeredUser = userOptional.get();
-                session.setAttribute(USER_ID, registeredUser.getId());
-                session.setAttribute(ACCOUNT_TYPE, registeredUser.getType());
-                commandResponse.setTargetURL(PATH_HOME);
+                CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get());
             } else {
-                commandResponse.setErrorStatus(true);
-                commandResponse.setMessage(KEY_REGISTRATION_ERROR);
-                commandResponse.setTargetURL(PATH_REGISTRATION);
+                CommandHelper.processUserAuthenticationFailed(commandResponse);
             }
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);

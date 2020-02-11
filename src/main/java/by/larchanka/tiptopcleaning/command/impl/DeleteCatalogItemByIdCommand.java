@@ -24,7 +24,6 @@ public class DeleteCatalogItemByIdCommand implements Command {
 
         CommandResponse commandResponse = new CommandResponse();
         
-        
         try {
             boolean isDeleted = catalogItemService.deleteCatalogItemById(id);
 
