@@ -1,11 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="ctg" uri="http://tomcat.apache.org/example-taglib" %>
 
 
 <c:set var="user" value="${requestScope.user}" />
 <c:set var="errorKey" value="${requestScope.errorKey}" />
 <c:set var="successKey" value="${requestScope.successKey}" />
+<c:set var="user_type" value="${sessionScope.user_type}" />
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="local" var="loc"/>
@@ -50,6 +52,8 @@
                     <strong><c:out value="${success}" /></strong>
                 </div>
             </c:if>
+
+            <div style="margin-bottom: 30px"><ctg:hello role="${ user_type }"/></div>
 
             <form class="form-horizontal" role="form" method="post" action="/controller">
                 <div class="form-group">

@@ -137,7 +137,7 @@
                 <div class="col-sm">
                     <label class="image-checkbox">
                         <img class="img-responsive" src="../../img/items/<c:out value="${catalogItem.imageName}"/>"
-                             style="width: 280px; height: 280px">
+                             style="width: 250px; height: 250px">
                         <input name="single_item_id" value="<c:out value="${catalogItem.id}"/>" type="checkbox">
                         <i class="fa fa-check hidden"></i>
                         <h4><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</h4>

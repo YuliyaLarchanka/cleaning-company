@@ -15,16 +15,10 @@
 <fmt:message bundle="${loc}" key="local.home.title.large" var="largeTitle" />
 <fmt:message bundle="${loc}" key="local.home.title.small" var="smallTitle" />
 <fmt:message bundle="${loc}" key="local.home.page.room.cleaning.description" var="room" />
-<%@ taglib uri="/WEB-INF/tld/custom.tld" prefix="ctd" %>
-<%@ taglib prefix="ctg" uri="http://tomcat.apache.org/example-taglib" %>
-<c:set var="user_type" value="${sessionScope.user_type}" />
 
 <body>
-<c:if test="${not (user_type eq null)}">
-<ctg:hello role="${ user_type }"/>
-</c:if>
 
-<div class="has-bg-img">
+<div class="has-bg-img" style="height: 722px">
     <div class="container">
         <c:if test="${not (errorKey eq null)}">
             <fmt:message bundle="${loc}" key="${errorKey}" var="error"/>
@@ -49,4 +43,5 @@
     </div>
 </div>
 </body>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

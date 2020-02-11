@@ -15,7 +15,6 @@
 
 <fmt:message bundle="${loc}" key="local.title.profile" var="profile"/>
 <fmt:message bundle="${loc}" key="local.title.home" var="home"/>
-<fmt:message bundle="${loc}" key="local.title.about" var="about"/>
 <fmt:message bundle="${loc}" key="local.title.service" var="service"/>
 <fmt:message bundle="${loc}" key="local.title.registration" var="registration"/>
 <fmt:message bundle="${loc}" key="local.language" var="language"/>
@@ -53,9 +52,6 @@
                 <a class="nav-link" href="${pageContext.request.contextPath}/home">${home}
                     <span class="sr-only">(current)</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/about">${about}</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/catalog">${service}</a>

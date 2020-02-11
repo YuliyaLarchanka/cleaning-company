@@ -72,7 +72,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-bottom: 50px">
     <c:if test="${not (errorKey eq null)}">
         <fmt:message bundle="${loc}" key="${errorKey}" var="error"/>
         <div class="alert alert-danger alert-dismissable">
@@ -118,7 +118,7 @@
                     <div class="col-sm">
                         <label class="image-checkbox">
                             <img class="img-responsive" src="../../img/items/<c:out value="${catalogItem.imageName}"/>"
-                                 style="width: 280px; height: 280px">
+                                 style="width: 250px; height: 250px">
                             <input name="single_item_id" value="<c:out value="${catalogItem.id}"/>" type="checkbox">
                             <i class="fa fa-check hidden"></i>
                             <h4><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</h4>
@@ -137,21 +137,21 @@
         <div class="row">
             <div class="col-sm">
                 <label class="image-radio">
-                    <img class="img-responsive" src="../../img/steam-iron.png" style="width: 280px; height: 180px">
+                    <img class="img-responsive" src="../../img/cash.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="cash" type="radio" checked>
                     <h2>${cash}</h2>
                 </label>
             </div>
             <div class="col-sm">
                 <label class="image-radio">
-                    <img class="img-responsive" src="../../img/toilet.png" style="width: 280px; height: 180px">
+                    <img class="img-responsive" src="../../img/card.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="card" type="radio">
                     <h2>${card}</h2>
                 </label>
             </div>
             <div class="col-sm">
                 <label class="image-radio">
-                    <img class="img-responsive" src="../../img/steam-iron.png" style="width: 280px; height: 180px">
+                    <img class="img-responsive" src="../../img/account-balance.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="account_balance" type="radio">
                     <h2>${accountBalance}</h2>
                 </label>
