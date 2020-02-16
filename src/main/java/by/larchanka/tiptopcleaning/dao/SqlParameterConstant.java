@@ -1,13 +1,11 @@
 package by.larchanka.tiptopcleaning.dao;
 
 public class SqlParameterConstant {
-    public static final String SQL_ACCOUNT = "account";
     public static final String SQL_ACCOUNT_ID = "account_id";
     public static final String SQL_ACCOUNT_TYPE = "account_type";
     public static final String SQL_ACCOUNT_FIRST_NAME = "first_name";
     public static final String SQL_ACCOUNT_LAST_NAME = "last_name";
     public static final String SQL_ACCOUNT_EMAIL = "email";
-    public static final String SQL_ACCOUNT_PASSWORD = "account_password";
     public static final String SQL_ACCOUNT_MONEY = "money";
     public static final String SQL_ACCOUNT_PHONE_NUMBER = "phone_number";
     public static final String SQL_ACCOUNT_STREET = "street";
@@ -22,25 +20,15 @@ public class SqlParameterConstant {
     public static final String SQL_CATALOG_ITEM_IMAGE_NAME = "image_name";
     public static final String SQL_CATALOG_ITEM_PRICE = "price";
     public static final String SQL_CATALOG_ITEM_MULTIPLE_SUPPORTED = "multiple_supported";
-    public static final String SQL_CATALOG_ITEM_IS_ACTIVE = "is_active";
-    public static final String SQL_CATALOG_ITEM = "catalog_item";
 
     public static final String SQL_ACCOUNT_ORDER_DATE_TIME = "date_time";
     public static final String SQL_ACCOUNT_ORDER_TOTAL_COST = "total_cost";
     public static final String SQL_ACCOUNT_ORDER_PAYMENT_METHOD = "payment_method";
     public static final String SQL_ACCOUNT_ORDER_STATUS = "account_order_status";
-    public static final String SQL_ACCOUNT_ORDER = "account_order";
     public static final String SQL_ACCOUNT_ORDER_ID = "account_order_id";
-
-    public static final String SQL_AO = "ao";
-    public static final String SQL_OI = "oi";
-    public static final String SQL_CI = "ci";
     public static final String SQL_ORDER_ITEM_AMOUNT = "amount";
-    public static final String SQL_ORDER_ITEM = "order_item";
 
     public static final String SQL_PROMO_CODE_VALUE = "promo_code_value";
     public static final String SQL_PROMO_CODE_DISCOUNT = "discount_percentage";
     public static final String SQL_PROMO_CODE_ID = "promo_code_id";
-    public static final String SQL_PROMO_CODE = "promo_code";
-
 }

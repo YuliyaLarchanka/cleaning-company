@@ -20,7 +20,7 @@
 <html>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body>
-<div class="container">
+<div class="container" style="margin-bottom: 160px">
     <c:if test="${not (errorKey eq null)}">
         <fmt:message bundle="${loc}" key="${errorKey}" var="error" />
         <div class="alert alert-danger alert-dismissable">
@@ -40,34 +40,34 @@
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <form method="post" action="/controller">
-                <h2>${title}</h2>
+                <h2><c:out value="${title}"/></h2>
                 <div class="form-group">
-                    <label>${name}</label>
+                    <label><c:out value="${name}"/></label>
                     <input type="text" class="form-control" minlength="2" maxlength="10" name="first_name" required="required">
                 </div>
                 <div class="form-group">
-                    <label>${surname}</label>
+                    <label><c:out value="${surname}"/></label>
                     <input type="text" class="form-control" minlength="2" maxlength="10" name="last_name" required="required">
                 </div>
 
                 <div class="form-group">
-                    <label>${email}</label>
+                    <label><c:out value="${email}"/></label>
                     <input type="email" class="form-control" name="email" required="required">
                 </div>
                 <div class="form-group">
-                    <label>${password}</label>
+                    <label><c:out value="${password}"/></label>
                     <input type="password" class="form-control" name="password" required="required">
                 </div>
                 <div class="form-group">
-                    <label>${passwordConfirm}</label>
+                    <label><c:out value="${passwordConfirm}"/></label>
                     <input type="password" class="form-control" name="confirm_password" required="required">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">${registerNow}</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block"><c:out value="${registerNow}"/></button>
                 </div>
                 <input type="hidden" name="command_name" value="register_user">
             </form>
-            <div class="text-center">${haveAccount} <a href="${pageContext.request.contextPath}/authentication">${signIn}</a></div>
+            <div class="text-center">${haveAccount} <a href="${pageContext.request.contextPath}/authentication"><c:out value="${signIn}"/></a></div>
         </div>
     </div>
 </div>

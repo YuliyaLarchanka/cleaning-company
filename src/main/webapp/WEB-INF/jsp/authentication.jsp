@@ -22,7 +22,7 @@
         <div class="alert alert-danger alert-dismissable">
             <a class="panel-close close" data-dismiss="alert">×</a>
             <i class="fa fa-coffee"></i>
-            <strong><c:out value="${error}" /></strong>
+            <strong><c:out value="${error}"/></strong>
         </div>
     </c:if>
     <c:if test="${not (successKey eq null)}">
@@ -30,28 +30,28 @@
         <div class="alert alert-info alert-dismissable">
             <a class="panel-close close" data-dismiss="alert">×</a>
             <i class="fa fa-coffee"></i>
-            <strong><c:out value="${success}" /></strong>
+            <strong><c:out value="${success}"/></strong>
         </div>
     </c:if>
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="login-form">
                 <form method="post" action="/controller">
-                    <h2 class="text-center" style="padding-block: 10px">${signIn}</h2>
+                    <h2 class="text-center" style="padding-block: 10px"><c:out value="${signIn}"/></h2>
                     <div class="form-group">
-                        <label>${email}</label>
+                        <label><c:out value="${email}"/></label>
                         <input type="email" class="form-control" name="email" required="required">
                     </div>
                     <div class="form-group">
-                        <label>${password}</label>
+                        <label><c:out value="${password}"/></label>
                         <input type="password" class="form-control" name="password" required="required">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-block">${signIn}</button>
+                        <button type="submit" class="btn btn-primary btn-block"><c:out value="${signIn}"/></button>
                     </div>
                     <input type="hidden" name="command_name" value="authenticate_user">
                 </form>
-                <p class="text-center"><a href="/registration">${createAccount}</a>
+                <p class="text-center"><a href="/registration"><c:out value="${createAccount}"/></a>
                 </p>
             </div>
         </div>

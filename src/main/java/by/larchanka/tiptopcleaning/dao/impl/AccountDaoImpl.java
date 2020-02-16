@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_APARTMENT;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_EMAIL;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ENTRANCE;
@@ -30,7 +29,6 @@ import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_I
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_INTERCOM_CODE;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_LAST_NAME;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_MONEY;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_PASSWORD;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_PHONE_NUMBER;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_STREET;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_TYPE;
@@ -54,30 +52,19 @@ public class AccountDaoImpl implements AccountDao {
 
 
     private static final String GET_USER_COMMAND =
-            "SELECT " +
-                    SQL_ACCOUNT_ID + ", " +
-                    SQL_ACCOUNT_TYPE + ", " +
-                    SQL_ACCOUNT_FIRST_NAME + ", " +
-                    SQL_ACCOUNT_LAST_NAME + ", " +
-                    SQL_ACCOUNT_EMAIL + ", " +
-                    SQL_ACCOUNT_PASSWORD + ", " +
-                    SQL_ACCOUNT_MONEY +
-                    " FROM account " +
-                    "WHERE " +
-                    SQL_ACCOUNT_EMAIL + " = ? and " + SQL_ACCOUNT_PASSWORD + " = ?";
+            "SELECT account_id, account_type, first_name, last_name, email, account_password," +
+                    " money FROM account WHERE email = ? and account_password = ?";
 
-    private static final String GET_USER_BY_ID_COMMAND = "SELECT * FROM account WHERE account_id = ?";
+    private static final String GET_USER_BY_ID_COMMAND = "SELECT account_id, account_type, first_name," +
+            " last_name, email, account_password, money, phone_number, street, house, apartment, entrance," +
+            " floor, intercom_code FROM account WHERE account_id = ?";
 
-    private static final String FIND_USER_BY_EMAIL_SQL = "SELECT * FROM account WHERE email = ?";
+    private static final String FIND_USER_BY_EMAIL_SQL = "SELECT account_id, account_type, first_name," +
+            " last_name, email FROM account WHERE email = ?";
 
     private static final String GET_ACCOUNT_LIST =
-            "SELECT " +
-                    SQL_ACCOUNT_ID + ", " +
-                    SQL_ACCOUNT_TYPE + ", " +
-                    SQL_ACCOUNT_FIRST_NAME + ", " +
-                    SQL_ACCOUNT_LAST_NAME + ", " +
-                    SQL_ACCOUNT_EMAIL +
-                    " FROM " + SQL_ACCOUNT;
+            "SELECT account_id, account_type, first_name, last_name, email FROM account";
+
 
     @Override
     public Optional<User> addUser(User user) throws DaoException {

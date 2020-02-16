@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_PROMO_CODE;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_PROMO_CODE_DISCOUNT;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_PROMO_CODE_ID;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_PROMO_CODE_VALUE;
@@ -26,29 +25,19 @@ public class PromoCodeDaoImpl implements PromoCodeDao {
     private static final Logger logger = LogManager.getLogger();
 
     private static final String GET_PROMO_CODE_BY_NAME_COMMAND =
-            "SELECT " +
-                    SQL_PROMO_CODE_ID + ", " +
-                    SQL_PROMO_CODE_DISCOUNT +
-                    " FROM promo_code" +
-                    " WHERE " +
-                    SQL_PROMO_CODE_VALUE + " = ?";
+            "SELECT promo_code_id, discount_percentage FROM promo_code WHERE promo_code_value = ?";
 
     private static final String GET_PROMO_CODE_LIST =
-            "SELECT " +
-                    SQL_PROMO_CODE_ID + ", " +
-                    SQL_PROMO_CODE_VALUE + ", " +
-                    SQL_PROMO_CODE_DISCOUNT +
-                    " FROM promo_code";
+            "SELECT promo_code_id, promo_code_value, discount_percentage FROM promo_code";
 
     private static final String DELETE_PROMO_CODE_BY_ID_COMMAND =
-            "DELETE FROM " +
-                    SQL_PROMO_CODE + " WHERE " +
-                    SQL_PROMO_CODE_ID + " = ?";
+            "DELETE FROM promo_code WHERE promo_code_id = ?";
 
     private static final String ADD_PROMO_CODE =
-            "INSERT INTO " + SQL_PROMO_CODE + " (promo_code_value, discount_percentage) VALUES (?, ?)";
+            "INSERT INTO promo_code (promo_code_value, discount_percentage) VALUES (?, ?)";
 
-    private static final String FIND_PROMO_CODE_BY_VALUE = "SELECT * FROM promo_code WHERE promo_code_value = ?";
+    private static final String FIND_PROMO_CODE_BY_VALUE = "SELECT promo_code_id, promo_code_value," +
+            " discount_percentage FROM promo_code WHERE promo_code_value = ?";
 
 
     @Override

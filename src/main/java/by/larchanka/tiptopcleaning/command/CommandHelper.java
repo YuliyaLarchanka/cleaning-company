@@ -7,25 +7,21 @@ import javax.servlet.http.HttpSession;
 
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.ACCOUNT_TYPE;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.USER_ID;
-import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_AUTHENTICATION;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_HOME;
-import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_AUTHENTICATION_SUCCESS;
-import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_USER_MISMATCH;
 
 public class CommandHelper {
 
-    public static void processUserAuthenticationSuccess(
-            HttpServletRequest request, CommandResponse commandResponse, User authenticatedUser) {
-        commandResponse.setMessage(KEY_AUTHENTICATION_SUCCESS);
+    public static void processUserAuthenticationSuccess(HttpServletRequest request, CommandResponse commandResponse, User authenticatedUser, String message) {
+        commandResponse.setMessage(message);
         HttpSession session = request.getSession(true);
         session.setAttribute(USER_ID, authenticatedUser.getId());
         session.setAttribute(ACCOUNT_TYPE, authenticatedUser.getType());
         commandResponse.setTargetURL(PATH_HOME);
     }
 
-    public static void processUserAuthenticationFailed(CommandResponse commandResponse) {
+    public static void processUserAuthenticationFailed(CommandResponse commandResponse, String message, String path) {
         commandResponse.setErrorStatus(true);
-        commandResponse.setMessage(KEY_USER_MISMATCH);
-        commandResponse.setTargetURL(PATH_AUTHENTICATION);
+        commandResponse.setMessage(message);
+        commandResponse.setTargetURL(path);
     }
 }

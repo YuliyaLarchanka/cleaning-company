@@ -23,7 +23,7 @@ public class AddMoney implements Command {
     public CommandResponse execute(HttpServletRequest request) {
         BigDecimal money = BigDecimal.valueOf(Double.parseDouble(request.getParameter(MONEY)));
         HttpSession session = request.getSession(true);
-        long userId = Long.parseLong(session.getAttribute(USER_ID).toString());
+        long userId = (long)session.getAttribute(USER_ID);
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();

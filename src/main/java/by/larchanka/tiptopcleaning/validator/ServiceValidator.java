@@ -1,4 +1,4 @@
-package by.larchanka.tiptopcleaning.validation;
+package by.larchanka.tiptopcleaning.validator;
 
 import by.larchanka.tiptopcleaning.entity.User;
 import org.apache.logging.log4j.LogManager;
@@ -16,14 +16,11 @@ public class ServiceValidator {
 
     private static final ServiceValidator INSTANCE = new ServiceValidator();
 
-    private ServiceValidator() {
-    }
-
     public static ServiceValidator getInstance() {
         return INSTANCE;
     }
 
-    public boolean validateUser(User user, String confirmationPassword){
+    public boolean validateUser(User user, String confirmationPassword) {
         if (user.getEmail().isEmpty() || user.getPassword().isEmpty() || user.getFirstName().isEmpty()
                 || user.getLastName().isEmpty()) {
             logger.debug(VALIDATION_ERROR);

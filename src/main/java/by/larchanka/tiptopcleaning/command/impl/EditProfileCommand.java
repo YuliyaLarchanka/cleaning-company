@@ -46,7 +46,7 @@ public class EditProfileCommand implements Command {
         String floor = request.getParameter(FLOOR_NUMBER);
         String intercomCode = request.getParameter(INTERCOM_CODE);
         HttpSession session = request.getSession(true);
-        long userId = Long.parseLong(session.getAttribute(USER_ID).toString());
+        long userId = (long)session.getAttribute(USER_ID);
 
         User updatedUser = new User();
         updatedUser.setId(userId);

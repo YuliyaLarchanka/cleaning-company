@@ -21,6 +21,8 @@ import static by.larchanka.tiptopcleaning.command.PageParameterConstant.LAST_NAM
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.PASSWORD;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_REGISTRATION;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
+import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_REGISTRATION_ERROR;
+import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_REGISTRATION_SUCCESS;
 
 public class RegistrationCommand implements Command {
     @Override
@@ -43,9 +45,9 @@ public class RegistrationCommand implements Command {
         try {
             Optional<User> userOptional = accountService.addUser(registerUser, confirmationPassword);
             if (userOptional.isPresent()) {
-                CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get());
+                CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get(), KEY_REGISTRATION_SUCCESS);
             } else {
-                CommandHelper.processUserAuthenticationFailed(commandResponse);
+                CommandHelper.processUserAuthenticationFailed(commandResponse, KEY_REGISTRATION_ERROR, PATH_REGISTRATION);
             }
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);

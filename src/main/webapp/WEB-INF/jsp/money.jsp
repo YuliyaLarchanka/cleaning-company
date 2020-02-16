@@ -7,7 +7,8 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="local" var="loc"/>
-<fmt:message bundle="${loc}" key="local.registration.title" var="title"/>
+<fmt:message bundle="${loc}" key="local.money.title" var="title"/>
+<fmt:message bundle="${loc}" key="local.money.button" var="button"/>
 <html>
 <head>
     <jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -32,9 +33,9 @@
     </c:if>
     <form class="form-horizontal" role="form" method="post" action="/controller">
         <div class="col-md-8">
-            <h2>Enter amount</h2>
+            <h2><c:out value="${title}"/></h2>
             <input class="form-control" autocomplete="off" min="1" max="5000" type="number" name="money" required/>
-            <button type="submit" class="btn">submit</button>
+            <button type="submit" class="btn"><c:out value="${button}"/></button>
             <input type="hidden" name="command_name" value="add_money">
         </div>
     </form>

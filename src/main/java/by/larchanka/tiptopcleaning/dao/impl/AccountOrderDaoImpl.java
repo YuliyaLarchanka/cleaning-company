@@ -27,20 +27,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ID;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_DATE_TIME;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_ID;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_PAYMENT_METHOD;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_STATUS;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ACCOUNT_ORDER_TOTAL_COST;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_AO;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_ID;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_NAME;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CI;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_OI;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ORDER_ITEM;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_ORDER_ITEM_AMOUNT;
 
 public class AccountOrderDaoImpl implements AccountOrderDao {
@@ -57,41 +50,23 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
             " WHERE account_id = ?";
 
     private final static String GET_ACCOUNT_ORDERS_BY_USER_ID_COMMAND =
-            "SELECT " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_ID + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_DATE_TIME + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_TOTAL_COST + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_PAYMENT_METHOD + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_STATUS + ", " +
-                    SQL_OI + "." + SQL_ORDER_ITEM_AMOUNT + ", " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_ID + ", " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_NAME +
-                    " FROM " + SQL_ACCOUNT_ORDER + " " + SQL_AO +
-                    " JOIN " + SQL_ORDER_ITEM + " " +
-                    SQL_OI + " ON " + SQL_OI + "." + SQL_ACCOUNT_ORDER_ID + " = " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_ID +
-                    " JOIN " + SQL_CATALOG_ITEM + " " +
-                    SQL_CI + " ON " + SQL_OI + "." + SQL_CATALOG_ITEM_ID + " = " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_ID +
-                    " WHERE " + SQL_AO + "." + SQL_ACCOUNT_ID + " = ?";
+            "SELECT ao.account_order_id, ao.date_time, ao.total_cost, ao.payment_method," +
+                    " ao.account_order_status, oi.amount, ci.catalog_item_id, ci.name " +
+                    "FROM account_order ao " +
+                    "JOIN order_item oi " +
+                    "ON oi.account_order_id = ao.account_order_id " +
+                    "JOIN catalog_item ci " +
+                    "ON oi.catalog_item_id = ci.catalog_item_id " +
+                    "WHERE ao.account_id = ?";
 
     private final static String GET_ALL_ACCOUNT_ORDERS =
-            "SELECT " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_ID + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_DATE_TIME + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_TOTAL_COST + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_PAYMENT_METHOD + ", " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_STATUS + ", " +
-                    SQL_OI + "." + SQL_ORDER_ITEM_AMOUNT + ", " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_ID + ", " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_NAME +
-                    " FROM " + SQL_ACCOUNT_ORDER + " " + SQL_AO +
-                    " JOIN " + SQL_ORDER_ITEM + " " +
-                    SQL_OI + " ON " + SQL_OI + "." + SQL_ACCOUNT_ORDER_ID + " = " +
-                    SQL_AO + "." + SQL_ACCOUNT_ORDER_ID +
-                    " JOIN " + SQL_CATALOG_ITEM + " " +
-                    SQL_CI + " ON " + SQL_OI + "." + SQL_CATALOG_ITEM_ID + " = " +
-                    SQL_CI + "." + SQL_CATALOG_ITEM_ID;
+            "SELECT ao.account_order_id, ao.date_time, ao.total_cost, ao.payment_method," +
+                    " ao.account_order_status, oi.amount, ci.catalog_item_id, ci.name " +
+                    "FROM account_order ao " +
+                    "JOIN order_item oi " +
+                    "ON oi.account_order_id = ao.account_order_id " +
+                    "JOIN catalog_item ci " +
+                    "ON oi.catalog_item_id = ci.catalog_item_id";
 
     private final static String CHANGE_ACCOUNT_ORDER_STATUS_COMMAND = "UPDATE account_order SET account_order_status = ?" +
             " WHERE account_order_id = ?";

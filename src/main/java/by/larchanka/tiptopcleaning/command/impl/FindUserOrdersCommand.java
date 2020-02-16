@@ -24,7 +24,7 @@ public class FindUserOrdersCommand implements Command {
         AccountOrderService accountOrderService = factory.getAccountOrderService();
 
         HttpSession session = request.getSession(true);
-        long userId = Long.parseLong(session.getAttribute(USER_ID).toString());
+        long userId = (long)session.getAttribute(USER_ID);
         CommandResponse commandResponse = new CommandResponse();
 
         try {

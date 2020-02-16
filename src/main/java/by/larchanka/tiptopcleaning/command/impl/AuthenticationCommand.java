@@ -15,7 +15,9 @@ import java.util.Optional;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.EMAIL;
 import static by.larchanka.tiptopcleaning.command.PageParameterConstant.PASSWORD;
 import static by.larchanka.tiptopcleaning.controller.PagePathConstant.PATH_AUTHENTICATION;
+import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_AUTHENTICATION_SUCCESS;
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ERROR;
+import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_USER_MISMATCH;
 
 public class AuthenticationCommand implements Command {
     @Override
@@ -30,9 +32,9 @@ public class AuthenticationCommand implements Command {
         try {
             Optional<User> userOptional = accountService.authenticateUser(email, password);
             if (userOptional.isPresent()) {
-                CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get());
+                CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get(), KEY_AUTHENTICATION_SUCCESS);
             } else {
-                CommandHelper.processUserAuthenticationFailed(commandResponse);
+                CommandHelper.processUserAuthenticationFailed(commandResponse, KEY_USER_MISMATCH, PATH_AUTHENTICATION);
             }
 
         } catch (ServiceException e) {

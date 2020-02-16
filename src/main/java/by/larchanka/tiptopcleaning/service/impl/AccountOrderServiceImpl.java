@@ -1,7 +1,6 @@
 package by.larchanka.tiptopcleaning.service.impl;
 
 import by.larchanka.tiptopcleaning.dao.AccountOrderDao;
-import by.larchanka.tiptopcleaning.dao.DaoCreator;
 import by.larchanka.tiptopcleaning.dao.DaoException;
 import by.larchanka.tiptopcleaning.entity.AccountOrder;
 import by.larchanka.tiptopcleaning.entity.CatalogItem;
@@ -15,10 +14,7 @@ import by.larchanka.tiptopcleaning.service.AccountService;
 import by.larchanka.tiptopcleaning.service.CatalogItemService;
 import by.larchanka.tiptopcleaning.service.PromoCodeService;
 import by.larchanka.tiptopcleaning.service.ServiceException;
-import by.larchanka.tiptopcleaning.service.ServiceStorage;
-import by.larchanka.tiptopcleaning.validation.AccountOrderValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.larchanka.tiptopcleaning.validator.AccountOrderValidator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,13 +22,25 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class AccountOrderServiceImpl implements AccountOrderService {
-    private static final Logger logger = LogManager.getLogger();
+    private AccountOrderDao dao;
+    private AccountOrderValidator accountOrderValidator;
+    private CatalogItemService catalogItemService;
+    private PromoCodeService promoCodeService;
+    private AccountService accountService;
+
+    public AccountOrderServiceImpl(AccountOrderDao dao, AccountOrderValidator accountOrderValidator,
+                                   CatalogItemService catalogItemService, PromoCodeService promoCodeService, AccountService accountService) {
+        this.dao = dao;
+        this.accountOrderValidator = accountOrderValidator;
+        this.catalogItemService = catalogItemService;
+        this.promoCodeService = promoCodeService;
+        this.accountService = accountService;
+    }
 
     @Override
     public Optional<AccountOrder> createAccountOrder(AccountOrder order) throws ServiceException {
-        AccountOrderValidator accountOrderValidator = AccountOrderValidator.getInstance();
         boolean isValidDate = accountOrderValidator.validateDate(order.getDateTime());
-        if(!isValidDate) {
+        if (!isValidDate) {
             return Optional.empty();
         }
 
@@ -43,11 +51,9 @@ public class AccountOrderServiceImpl implements AccountOrderService {
                 .map(CatalogItem::getId)
                 .collect(Collectors.toList());
 
-        ServiceStorage serviceStorage = ServiceStorage.getInstance();
-        CatalogItemService catalogItemService = serviceStorage.getCatalogItemService();
         List<CatalogItem> catalogItemsToOrder = catalogItemService.getCatalogItemListByIds(catalogItemIds);
         if (catalogItemIds.size() != catalogItemsToOrder.size()) {
-            return Optional.empty();//в случае, если мэнеджер добавил или удалил услугу
+            return Optional.empty();
         }
 
         BigDecimal totalCost = new BigDecimal(0);
@@ -69,8 +75,7 @@ public class AccountOrderServiceImpl implements AccountOrderService {
         PromoCode promoCode = order.getPromoCode();
         if (promoCode != null) {
             String promoCodeName = promoCode.getValue();
-            PromoCodeService promocodeService = serviceStorage.getPromoCodeService();
-            Optional<PromoCode> promoCodeOptional = promocodeService.findPromoCodeByName(promoCodeName);
+            Optional<PromoCode> promoCodeOptional = promoCodeService.findPromoCodeByName(promoCodeName);
             if (promoCodeOptional.isEmpty()) {
                 return Optional.empty();
             }
@@ -78,7 +83,7 @@ public class AccountOrderServiceImpl implements AccountOrderService {
             promoCode = promoCodeOptional.get();
             order.setPromoCode(promoCode);
             double discount = promoCode.getDiscountPercentage();
-            BigDecimal discountMultiplier = BigDecimal.valueOf((100 - discount)/100.0);
+            BigDecimal discountMultiplier = BigDecimal.valueOf((100 - discount) / 100.0);
             totalCost = totalCost.multiply(discountMultiplier);
         }
 
@@ -86,7 +91,6 @@ public class AccountOrderServiceImpl implements AccountOrderService {
 
         if (PaymentMethod.ACCOUNT_BALANCE.equals(order.getPaymentMethod())) {
             long userId = order.getUser().getId();
-            AccountService accountService = serviceStorage.getAccountService();
             Optional<User> optionalUser = accountService.findUserById(userId);
 
             if (optionalUser.isEmpty()) {
@@ -99,21 +103,15 @@ public class AccountOrderServiceImpl implements AccountOrderService {
             }
         }
 
-        DaoCreator creator = DaoCreator.getInstance();
-        AccountOrderDao accountOrderDao = creator.getAccountOrderDao();
-
         try {
-            return accountOrderDao.createAccountOrder(order, orderItemList);
+            return dao.createAccountOrder(order, orderItemList);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public List<AccountOrder> findAccountOrdersByUserId(long userId) throws ServiceException{
-        DaoCreator creator = DaoCreator.getInstance();
-        AccountOrderDao dao = creator.getAccountOrderDao();
-
+    public List<AccountOrder> findAccountOrdersByUserId(long userId) throws ServiceException {
         try {
             return dao.findAccountOrdersByUserId(userId);
         } catch (DaoException e) {
@@ -122,10 +120,7 @@ public class AccountOrderServiceImpl implements AccountOrderService {
     }
 
     @Override
-    public List<AccountOrder> findAllAccountOrders() throws ServiceException{
-        DaoCreator creator = DaoCreator.getInstance();
-        AccountOrderDao dao = creator.getAccountOrderDao();
-
+    public List<AccountOrder> findAllAccountOrders() throws ServiceException {
         try {
             return dao.findAllAccountOrders();
         } catch (DaoException e) {
@@ -134,10 +129,7 @@ public class AccountOrderServiceImpl implements AccountOrderService {
     }
 
     @Override
-    public boolean changeAccountOrderStatus(long id, OrderStatus status) throws ServiceException{
-        DaoCreator creator = DaoCreator.getInstance();
-        AccountOrderDao dao = creator.getAccountOrderDao();
-
+    public boolean changeAccountOrderStatus(long id, OrderStatus status) throws ServiceException {
         try {
             return dao.changeAccountOrderStatus(id, status);
         } catch (DaoException e) {

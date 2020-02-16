@@ -23,7 +23,7 @@ public class FindUserInfoCommand implements Command {
         ServiceStorage factory = ServiceStorage.getInstance();
         AccountService accountService = factory.getAccountService();
 
-        long userId = Long.parseLong(request.getSession().getAttribute(USER_ID).toString());
+        long userId = (long)(request.getSession().getAttribute(USER_ID));
         CommandResponse commandResponse = new CommandResponse();
         try {
             Optional<User> userOptional = accountService.findUserById(userId);

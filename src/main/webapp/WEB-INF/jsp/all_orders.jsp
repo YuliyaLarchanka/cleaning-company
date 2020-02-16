@@ -38,8 +38,8 @@
         <c:forEach var="accountOrder" items="${requestScope.orderList}">
             <div class="col-6 border-warning" style="margin-bottom: 50px">
                 <form method="post" action="/controller">
-                <h2><c:out value="${accountOrder.dateTime}"/></h2>
-                <c:forEach var="orderItem" items="${accountOrder.orderItemList}">
+                    <h3><fmt:formatDate value="${accountOrder.dateTime}" pattern="dd/MM/yyyy HH:mm"/></h3>
+                    <c:forEach var="orderItem" items="${accountOrder.orderItemList}">
                     <p><c:out value="${orderItem.catalogItem.name}"/> <c:out value="${orderItem.amount}"/></p>
                 </c:forEach>
 

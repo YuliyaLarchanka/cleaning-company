@@ -21,6 +21,11 @@
 <fmt:message bundle="${loc}" key="local.catalog.button.label" var="label"/>
 <fmt:message bundle="${loc}" key="local.catalog.button.delete" var="delete"/>
 <fmt:message bundle="${loc}" key="local.catalog.button.edit" var="edit"/>
+<fmt:message bundle="${loc}" key="local.catalog.label.new.catalog.item" var="newCataloItem"/>
+<fmt:message bundle="${loc}" key="local.catalog.label.name" var="name"/>
+<fmt:message bundle="${loc}" key="local.catalog.label.price" var="price"/>
+<fmt:message bundle="${loc}" key="local.catalog.label.multiple.supported" var="multipleSupported"/>
+<fmt:message bundle="${loc}" key="local.catalog.label.image" var="image"/>
 
 <html>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
@@ -88,7 +93,7 @@
     </c:if>
 
 
-    <h3>${yourApartment}</h3>
+    <h3><c:out value="${yourApartment}"/></h3>
     <div class="row">
         <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
             <c:if test="${catalogItem.multipleSupported eq true}">
@@ -109,7 +114,7 @@
                                            value="<c:out value="${catalogItem.multipleSupported}"/>"/>
                                     <button type="button" class="btn btn-default" aria-label="Left Align"
                                             data-toggle="modal" data-target="#editCatalogItemModal"
-                                            data-id="<c:out value="${catalogItem.id}"/>">${edit}</button>
+                                            data-id="<c:out value="${catalogItem.id}"/>"><c:out value="${edit}"/></button>
                                 </form>
                             </div>
                             <div class="btn-group">
@@ -129,7 +134,7 @@
     </div>
 
     <br>
-    <h3>${oddOptions}</h3>
+    <h3><c:out value="${oddOptions}"/></h3>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <div class="row">
         <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
@@ -151,7 +156,7 @@
                                        value="<c:out value="${catalogItem.multipleSupported}"/>"/>
                                 <button type="button" class="btn btn-default" style="margin-right: 10px"
                                         aria-label="Left Align" data-toggle="modal" data-target="#editCatalogItemModal"
-                                        data-id="<c:out value="${catalogItem.id}"/>">${edit}</button>
+                                        data-id="<c:out value="${catalogItem.id}"/>"><c:out value="${edit}"/></button>
                             </form>
                             <form method="post" action="/controller">
                                 <input type="hidden" name="catalog_item_id" value="<c:out value="${catalogItem.id}"/>"/>
@@ -168,23 +173,23 @@
     <br>
     </form>
 
-    <h1 style="margin-top: 20px">New catalog item</h1>
+    <h1 style="margin-top: 20px"><c:out value="${newCataloItem}"/></h1>
 
     <div class="row">
         <div class="col-6">
             <form method="post" action="/controller" enctype="multipart/form-data">
-                <label>Name</label>
+                <label><c:out value="${name}"/></label>
                 <input class="form-control" autocomplete="off" style="width: 300px;" minlength="2" maxlength="30" type="text" name="name"
                        required="required"/>
-                <label>Price</label>
+                <label><c:out value="${price}"/></label>
                 <input class="form-control" autocomplete="off" style="width: 300px;" min="1" max="200.0" type="number" name="price"
                        required="required"/>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="multiple_supported" id="checkbox1"/>
-                    <label for="checkbox1" class="form-check-label">Multiple supported</label>
+                    <label for="checkbox1" class="form-check-label"><c:out value="${multipleSupported}"/></label>
                 </div>
                 <br>
-                <label>Image</label>
+                <label><c:out value="${image}"/></label>
                 <input type="file" name="image" required="required"/>
                 <input type="hidden" name="command_name" value="create_catalog_item">
                 <div class="row">
@@ -210,16 +215,16 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="controller" id="itemEdit" enctype="multipart/form-data">
-                    <label>Name</label>
+                    <label><c:out value="${name}"/></label>
                     <input class="form-control" autocomplete="off" style="width: 300px;" minlength="2" maxlength="30" type="text" name="name"
                            id="name" required="required"/>
-                    <label>Price</label>
+                    <label><c:out value="${price}"/></label>
                     <input class="form-control" autocomplete="off" style="width: 300px;" min="1" max="200.0" type="number" name="price"
                            id="price" required="required"/>
-                    <label>Multiple supported</label>
                     <input type="checkbox" name="multiple_supported" id="multiple_supported"/>
+                    <label><c:out value="${multipleSupported}"/></label>
                     <br>
-                    <label>Image</label>
+                    <label><c:out value="${image}"/></label>
                     <input type="file" name="image" required="required"/>
                     <input type="hidden" name="catalog_item_id" id="catalog_item_id">
                     <input type="hidden" name="command_name" value="edit_catalog_item" id="editCatalogItem"/>

@@ -8,7 +8,7 @@ INSERT INTO account (account_type, first_name, last_name, email, account_passwor
 INSERT INTO catalog_item (name, price, multiple_supported, is_active, image_name)
 VALUES ("Clean room", 28, true, true, "brush.png"),
       ("Clean bathroom", 16, true, true, "wc.png"),
-      ("Clean refrigerator", 12, false, true, "bucket.png"),
+      ("Clean washing machine", 12, false, true, "washing-machine.png"),
       ("Clean microwave", 8, false, true, "spray.png"),
       ("Clean oven", 15, false, true, "sponge.png"),
       ("Wash dishes", 10, false, true, "dishwasher.png"),

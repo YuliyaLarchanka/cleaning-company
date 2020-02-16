@@ -91,7 +91,7 @@
     </c:if>
 
     <form method="post" action="/controller">
-        <h3>${yourApartment}</h3>
+        <h3><c:out value="${yourApartment}"/></h3>
         <div class="row">
             <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
                 <c:if test="${catalogItem.multipleSupported eq true}">
@@ -110,7 +110,7 @@
         </div>
 
         <br>
-        <h3>${oddOptions}</h3>
+        <h3><c:out value="${oddOptions}"/></h3>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <div class="row">
             <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
@@ -129,38 +129,38 @@
         </div>
 
         <br>
-        <h3 style="margin-top: 50px">${dateTime}</h3>
+        <h3 style="margin-top: 50px"><c:out value="${dateTime}"/></h3>
         <input class="form-control" type="text" name="date" required="required" value="">
 
         <br>
-        <h3 style="margin-top: 50px">${paymentMethod}</h3>
+        <h3 style="margin-top: 50px"><c:out value="${paymentMethod}"/></h3>
         <div class="row">
             <div class="col-sm">
                 <label class="image-radio">
                     <img class="img-responsive" src="../../img/cash.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="cash" type="radio" checked>
-                    <h2>${cash}</h2>
+                    <h2><c:out value="${cash}"/></h2>
                 </label>
             </div>
             <div class="col-sm">
                 <label class="image-radio">
                     <img class="img-responsive" src="../../img/card.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="card" type="radio">
-                    <h2>${card}</h2>
+                    <h2><c:out value="${card}"/></h2>
                 </label>
             </div>
             <div class="col-sm">
                 <label class="image-radio">
                     <img class="img-responsive" src="../../img/account-balance.png" style="width: 230px; height: 180px">
                     <input name="payment_method" value="account_balance" type="radio">
-                    <h2>${accountBalance}</h2>
+                    <h2><c:out value="${accountBalance}"/></h2>
                 </label>
             </div>
         </div>
 
 
         <div style="margin-top: 100px">
-            <label style="font-size: 20px">${promoCode}</label>
+            <label style="font-size: 20px"><c:out value="${promoCode}"/></label>
             <input style="width: 300px;" class="form-control" autocomplete="off" type="text" name="promo_code"
                    placeholder="PROMO">
         </div>
@@ -169,11 +169,11 @@
         <label class="col-md-3 control-label"></label>
         <div class="col-md-8">
             <c:if test="${user_id eq null}">
-                <button type="submit" class="btn btn-primary btn-lg" disabled>${createOrderButton}</button>
-                <p>(${label})</p>
+                <button type="submit" class="btn btn-primary btn-lg" disabled><c:out value="${createOrderButton}"/></button>
+                <p>(<c:out value="${label}"/>)</p>
             </c:if>
             <c:if test="${not (user_id eq null)}">
-                <button type="submit" class="btn btn-primary btn-lg">${createOrderButton}</button>
+                <button type="submit" class="btn btn-primary btn-lg"><c:out value="${createOrderButton}"/></button>
             </c:if>
         </div>
         <input type="hidden" name="command_name" value="create_order">

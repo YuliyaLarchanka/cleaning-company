@@ -17,10 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_ID;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_IMAGE_NAME;
-import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_IS_ACTIVE;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_MULTIPLE_SUPPORTED;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_NAME;
 import static by.larchanka.tiptopcleaning.dao.SqlParameterConstant.SQL_CATALOG_ITEM_PRICE;
@@ -29,36 +27,16 @@ public class CatalogItemDaoImpl implements CatalogItemDao {
     private static final Logger logger = LogManager.getLogger();
 
     private static final String GET_CATALOG_ITEM_LIST =
-            "SELECT " +
-                    SQL_CATALOG_ITEM_ID + ", " +
-                    SQL_CATALOG_ITEM_NAME + ", " +
-                    SQL_CATALOG_ITEM_PRICE + ", " +
-                    SQL_CATALOG_ITEM_MULTIPLE_SUPPORTED + ", " +
-                    SQL_CATALOG_ITEM_IMAGE_NAME +
-                    " FROM catalog_item WHERE is_active = 1";
+            "SELECT catalog_item_id, name, price, multiple_supported, image_name FROM catalog_item WHERE is_active = 1";
 
     private static final String GET_CATALOG_ITEM_LIST_BY_IDS =
-            "SELECT " +
-                    SQL_CATALOG_ITEM_ID + ", " +
-                    SQL_CATALOG_ITEM_NAME + ", " +
-                    SQL_CATALOG_ITEM_PRICE + ", " +
-                    SQL_CATALOG_ITEM_MULTIPLE_SUPPORTED + ", " +
-                    SQL_CATALOG_ITEM_IMAGE_NAME +
-                    " FROM catalog_item " +
-                    "WHERE is_active = 1 and " + SQL_CATALOG_ITEM_ID + " in (";
+            "SELECT catalog_item_id, name, price, multiple_supported, image_name FROM catalog_item WHERE is_active = 1 AND catalog_item_id IN (";
 
     private static final String DELETE_CATALOG_ITEM_BY_ID_COMMAND =
-            "UPDATE " +
-                    SQL_CATALOG_ITEM + " SET is_active = 0 WHERE " +
-                    SQL_CATALOG_ITEM_ID + " = ?";
+            "UPDATE catalog_item SET is_active = 0 WHERE catalog_item_id = ?";
 
     private static final String CREATE_CATALOG_ITEM =
-            "INSERT INTO " + SQL_CATALOG_ITEM +
-                    "(" + SQL_CATALOG_ITEM_NAME + ", " +
-                    SQL_CATALOG_ITEM_PRICE + ", " +
-                    SQL_CATALOG_ITEM_MULTIPLE_SUPPORTED + ", " +
-                    SQL_CATALOG_ITEM_IS_ACTIVE + ", " +
-                    SQL_CATALOG_ITEM_IMAGE_NAME + ") VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO catalog_item (name, price, multiple_supported, is_active, image_name) VALUES (?, ?, ?, ?, ?)";
 
     private final static String UPDATE_CATALOG_ITEM_COMMAND = "UPDATE catalog_item SET name = ?," +
             " price = ?, multiple_supported = ?, image_name = ?" +
@@ -146,7 +124,7 @@ public class CatalogItemDaoImpl implements CatalogItemDao {
             statement.setString(1, catalogItem.getName());
             statement.setBigDecimal(2, catalogItem.getPrice());
             statement.setBoolean(3, catalogItem.isMultipleSupported());
-            statement.setByte(4, Byte.parseByte("1"));
+            statement.setByte(4, (byte) 1);
             statement.setString(5, catalogItem.getImageName());
 
             statement.executeUpdate();
