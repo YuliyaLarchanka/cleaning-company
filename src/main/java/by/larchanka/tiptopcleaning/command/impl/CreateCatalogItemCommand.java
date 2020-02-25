@@ -24,8 +24,6 @@ import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_DEFAULT_ER
 import static by.larchanka.tiptopcleaning.service.MessageConstant.KEY_UPLOAD_CATALOG_ITEM_IMAGE_ERROR;
 
 public class CreateCatalogItemCommand implements Command {
-    private static final Logger logger = LogManager.getLogger();
-
     @Override
     public CommandResponse execute(HttpServletRequest request) {
         CommandResponse commandResponse = new CommandResponse();
@@ -66,12 +64,12 @@ public class CreateCatalogItemCommand implements Command {
                 commandResponse.setMessage(KEY_ADD_CATALOG_ITEM_ERROR);
             }
             commandResponse.setTargetURL(PATH_CATALOG_ITEMS);
-
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_CATALOG_ITEMS);
         }
+
         return commandResponse;
     }
 }

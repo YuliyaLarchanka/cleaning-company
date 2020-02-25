@@ -66,27 +66,31 @@ public class CreateOrderCommand implements Command {
                 orderItemList.add(orderItem);
             }
         }
+
         String dateTimeString = request.getParameter(DATE_TIME_PICKER);
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         Timestamp timestamp = null;
+
         try {
             Date date = sdf.parse(dateTimeString);
             timestamp = new Timestamp(date.getTime());
         } catch (ParseException e) {
             logger.error(e);
         }
+
         AccountOrder accountOrder = new AccountOrder();
         accountOrder.setDateTime(timestamp);
-        
+
         String paymentMethod = request.getParameter(PAYMENT_METHOD);
         accountOrder.setPaymentMethod(PaymentMethod.valueOf(paymentMethod.toUpperCase()));
 
         String promoCodeValue = request.getParameter(PROMO_CODE);
+
         if (!StringUtils.isNullOrEmpty(promoCodeValue)) {
             accountOrder.setPromoCode(new PromoCode(promoCodeValue));
         }
 
-        long userId = (long)request.getSession().getAttribute(USER_ID);
+        long userId = (long) request.getSession().getAttribute(USER_ID);
         User user = new User();
         user.setId(userId);
         accountOrder.setUser(user);
@@ -95,10 +99,11 @@ public class CreateOrderCommand implements Command {
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountOrderService accountOrderService = creator.getAccountOrderService();
-
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             Optional<AccountOrder> orderOptional = accountOrderService.createAccountOrder(accountOrder);
+
             if (orderOptional.isPresent()) {
                 commandResponse.setMessage(KEY_CREATING_ORDER_SUCCESS);
                 commandResponse.setTargetURL(PATH_ORDERS);

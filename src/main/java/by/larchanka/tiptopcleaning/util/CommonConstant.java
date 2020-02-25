@@ -22,7 +22,7 @@ public class CommonConstant {
     public static final String EN = "en";
     public static final String RU = "ru";
 
-    public static final String SHA = "SHA-256";
+    static final String SHA = "SHA-256";
 
     public static final CommandResponse ERROR_RESPONSE = new CommandResponse(true, KEY_GENERIC_ERROR, PATH_ERROR);
 }

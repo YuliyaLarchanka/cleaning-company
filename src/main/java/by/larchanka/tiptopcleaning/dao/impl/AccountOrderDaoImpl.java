@@ -74,16 +74,18 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
     @Override
     public Optional<AccountOrder> createAccountOrder(AccountOrder accountOrder, List<OrderItem> orderItemList) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERT_ORDER_COMMAND, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(INSERT_ORDER_COMMAND, Statement.RETURN_GENERATED_KEYS)) {
             connection.setAutoCommit(false);
 
             statement.setLong(1, accountOrder.getUser().getId());
             PromoCode promoCode = accountOrder.getPromoCode();
+
             if (promoCode != null) {
                 statement.setLong(2, promoCode.getId());
             } else {
                 statement.setNull(2, Types.INTEGER);
             }
+
             statement.setBigDecimal(3, accountOrder.getTotalCost());
             statement.setInt(4, accountOrder.getPaymentMethod().ordinal());
             statement.setInt(5, accountOrder.getOrderStatus().ordinal());
@@ -92,6 +94,7 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
 
             long orderId;
             ResultSet resultSet = statement.getGeneratedKeys();
+
             if (resultSet.next()) {
                 orderId = resultSet.getInt(1);
                 accountOrder.setId(orderId);
@@ -129,7 +132,7 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
     @Override
     public List<AccountOrder> findAccountOrdersByUserId(long userId) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_ACCOUNT_ORDERS_BY_USER_ID_COMMAND)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ACCOUNT_ORDERS_BY_USER_ID_COMMAND)) {
             statement.setLong(1, userId);
 
             Map<Long, AccountOrder> accountOrderMap = new HashMap<>();
@@ -171,6 +174,7 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
 
                 accountOrder.getOrderItemList().add(orderItem);
             }
+
             return new ArrayList<>(accountOrderMap.values());
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);
@@ -181,7 +185,7 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
     @Override
     public List<AccountOrder> findAllAccountOrders() throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_ALL_ACCOUNT_ORDERS)) {
+             PreparedStatement statement = connection.prepareStatement(GET_ALL_ACCOUNT_ORDERS)) {
 
             Map<Long, AccountOrder> accountOrderMap = new HashMap<>();
             ResultSet resultSet = statement.executeQuery();
@@ -222,6 +226,7 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
 
                 accountOrder.getOrderItemList().add(orderItem);
             }
+
             return new ArrayList<>(accountOrderMap.values());
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);
@@ -229,9 +234,9 @@ public class AccountOrderDaoImpl implements AccountOrderDao {
         }
     }
 
-    public boolean changeAccountOrderStatus(long id, OrderStatus status) throws DaoException{
+    public boolean changeAccountOrderStatus(long id, OrderStatus status) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
-            PreparedStatement statement = connection.prepareStatement(CHANGE_ACCOUNT_ORDER_STATUS_COMMAND)) {
+             PreparedStatement statement = connection.prepareStatement(CHANGE_ACCOUNT_ORDER_STATUS_COMMAND)) {
             statement.setInt(1, status.ordinal());
             statement.setLong(2, id);
             int resultInt = statement.executeUpdate();

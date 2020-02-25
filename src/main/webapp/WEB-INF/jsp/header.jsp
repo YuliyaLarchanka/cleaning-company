@@ -42,7 +42,7 @@
     <div class="container">
 
     <a class="navbar-brand" href="#">
-        <img src="../../img/corgy2.jpg" height="30" alt="logo"/>
+        <img src="../../img/pug.png" height="50px" width="50px" alt="logo"/>
     </a>
 
     <div class="collapse navbar-collapse" id="basicExampleNav">

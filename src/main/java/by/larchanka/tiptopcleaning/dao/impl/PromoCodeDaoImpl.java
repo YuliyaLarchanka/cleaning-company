@@ -39,7 +39,6 @@ public class PromoCodeDaoImpl implements PromoCodeDao {
     private static final String FIND_PROMO_CODE_BY_VALUE = "SELECT promo_code_id, promo_code_value," +
             " discount_percentage FROM promo_code WHERE promo_code_value = ?";
 
-
     @Override
     public Optional<PromoCode> findPromoCodeByName(String name) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
@@ -51,11 +50,11 @@ public class PromoCodeDaoImpl implements PromoCodeDao {
             if (resultSet.next()) {
                 long id = resultSet.getLong(SQL_PROMO_CODE_ID);
                 byte discount = resultSet.getByte(SQL_PROMO_CODE_DISCOUNT);
-
                 PromoCode promoCode = new PromoCode();
                 promoCode.setId(id);
                 promoCode.setValue(name);
                 promoCode.setDiscountPercentage(discount);
+
                 return Optional.of(promoCode);
             } else {
                 return Optional.empty();
@@ -84,6 +83,7 @@ public class PromoCodeDaoImpl implements PromoCodeDao {
                 promoCode.setDiscountPercentage(discount);
                 promoCodeList.add(promoCode);
             }
+
             return promoCodeList;
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);

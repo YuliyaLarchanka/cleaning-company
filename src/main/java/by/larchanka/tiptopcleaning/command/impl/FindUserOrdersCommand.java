@@ -24,14 +24,14 @@ public class FindUserOrdersCommand implements Command {
         AccountOrderService accountOrderService = factory.getAccountOrderService();
 
         HttpSession session = request.getSession(true);
-        long userId = (long)session.getAttribute(USER_ID);
+        long userId = (long) session.getAttribute(USER_ID);
         CommandResponse commandResponse = new CommandResponse();
 
         try {
             List<AccountOrder> accountOrderList = accountOrderService.findAccountOrdersByUserId(userId);
             request.setAttribute(ACCOUNT_ORDER_LIST, accountOrderList);
             commandResponse.setTargetURL(PATH_REAL_ORDERS);
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_ERROR);

@@ -4,8 +4,7 @@ import by.larchanka.tiptopcleaning.command.Command;
 import by.larchanka.tiptopcleaning.command.CommandName;
 import by.larchanka.tiptopcleaning.command.CommandResponse;
 import by.larchanka.tiptopcleaning.connection.ConnectionPool;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.larchanka.tiptopcleaning.connection.ConnectionPoolException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -26,11 +25,14 @@ import static by.larchanka.tiptopcleaning.util.CommonConstant.URL_SEPARATOR;
 
 @MultipartConfig
 public class Controller extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger();
-
     @Override
     public void init() {
-        ConnectionPool.getInstance();
+        ConnectionPool connectionPool = ConnectionPool.getInstance();
+        try {
+            connectionPool.createPoll();
+        } catch (ConnectionPoolException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -38,8 +40,7 @@ public class Controller extends HttpServlet {
         try {
             ConnectionPool connectionPool = ConnectionPool.getInstance();
             connectionPool.destroyPool();
-        } catch (InterruptedException e) {
-            logger.fatal(e);
+        } catch (ConnectionPoolException e) {
             throw new RuntimeException(e);
         }
     }
@@ -48,7 +49,6 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         String commandName = request.getServletPath().replace(URL_SEPARATOR, EMPTY);
         commandName = commandName.replace(DASH, UNDERSCORE);
-
         CommandResponse commandResponse = processRequest(request, commandName);
 
         if (commandResponse.isErrorStatus()) {
@@ -60,11 +60,8 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-
         String commandName = request.getParameter(COMMAND_NAME);
-
         CommandResponse commandResponse = processRequest(request, commandName);
-
         HttpSession session = request.getSession(true);
 
         if (!commandResponse.isErrorStatus()) {

@@ -26,7 +26,6 @@ public class NotificationsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpSession session = request.getSession();
 
-
         Object attribute = session.getAttribute(ERROR_KEY);
         if (attribute != null) {
             request.setAttribute(ERROR_KEY, attribute);

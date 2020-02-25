@@ -73,7 +73,7 @@ public class ProxyConnection implements Connection {
         ConnectionPool.getInstance().returnConnection(this);
     }
 
-    public void realClose() throws SQLException {
+    void realClose() throws SQLException {
         connection.close();
     }
 

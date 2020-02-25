@@ -27,7 +27,7 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     }
 
     @Override
-    public List<PromoCode> findAllPromoCodes() throws ServiceException{
+    public List<PromoCode> findAllPromoCodes() throws ServiceException {
         List<PromoCode> promoCodeList;
         try {
             promoCodeList = dao.findAllPromoCodes();
@@ -39,7 +39,7 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     }
 
     @Override
-    public boolean deletePromoCodeById(long id) throws ServiceException{
+    public boolean deletePromoCodeById(long id) throws ServiceException {
         try {
             return dao.deletePromoCodeById(id);
         } catch (DaoException e) {
@@ -48,7 +48,7 @@ public class PromoCodeServiceImpl implements PromoCodeService {
     }
 
     @Override
-    public Optional<PromoCode> addPromoCode(PromoCode promoCode) throws ServiceException{
+    public Optional<PromoCode> addPromoCode(PromoCode promoCode) throws ServiceException {
         try {
             if (dao.isPromoCodeAlreadyExist(promoCode.getValue())) {
                 return Optional.empty();

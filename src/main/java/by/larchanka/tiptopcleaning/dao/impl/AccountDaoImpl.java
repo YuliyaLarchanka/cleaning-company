@@ -50,7 +50,6 @@ public class AccountDaoImpl implements AccountDao {
     private final static String ADD_MONEY_COMMAND = "UPDATE account SET money = money + ?" +
             " WHERE account_id = ?";
 
-
     private static final String GET_USER_COMMAND =
             "SELECT account_id, account_type, first_name, last_name, email, account_password," +
                     " money FROM account WHERE email = ? and account_password = ?";
@@ -68,7 +67,6 @@ public class AccountDaoImpl implements AccountDao {
 
     @Override
     public Optional<User> addUser(User user) throws DaoException {
-
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_USER_COMMAND, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -81,6 +79,7 @@ public class AccountDaoImpl implements AccountDao {
             statement.executeUpdate();
 
             ResultSet resultSet = statement.getGeneratedKeys();
+
             if (resultSet.next()) {
                 long id = resultSet.getInt(1);
                 user.setId(id);
@@ -115,7 +114,6 @@ public class AccountDaoImpl implements AccountDao {
             statement.executeUpdate();
 
             return Optional.of(updatedUser);
-
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);
             throw new DaoException();
@@ -199,7 +197,6 @@ public class AccountDaoImpl implements AccountDao {
     public List<User> findUsers() throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection();
              PreparedStatement statement = connection.prepareStatement(GET_ACCOUNT_LIST)) {
-
             ResultSet resultSet = statement.executeQuery();
             return parseResultSet(resultSet);
         } catch (ConnectionPoolException | SQLException e) {
@@ -263,7 +260,6 @@ public class AccountDaoImpl implements AccountDao {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
-
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);
             throw new DaoException(e);

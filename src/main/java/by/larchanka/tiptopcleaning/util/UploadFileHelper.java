@@ -8,7 +8,14 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class UploadFileHelper {
-    public Optional<String> uploadFile(HttpServletRequest request){
+
+    /**
+     * Loads image into tomcat package
+     *
+     * @param request a {@code HttpServletRequest} object to get parameters from
+     * @return {@code Optional<String>} object containing image name
+     */
+    public Optional<String> uploadFile(HttpServletRequest request) {
         String root = request.getServletContext().getRealPath("/");
         String uploadPath = root + "img" + File.separator + "items";
         File uploadDir = new File(uploadPath);
@@ -22,7 +29,7 @@ public class UploadFileHelper {
             imageNameOptional = getFileName(filePart);
 
             String imageName = null;
-            if(imageNameOptional.isPresent()){
+            if (imageNameOptional.isPresent()) {
                 imageName = imageNameOptional.get();
             }
 
@@ -34,6 +41,12 @@ public class UploadFileHelper {
         return imageNameOptional;
     }
 
+    /**
+     * Gets file name from request part
+     *
+     * @param part a {@code Part} object to get image name from
+     * @return {@code Optional<String>} object containing image name
+     */
     private Optional<String> getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
             if (content.trim().startsWith("filename")) {

@@ -12,7 +12,7 @@ public class ConnectionPoolException extends Throwable{
         super(message, cause);
     }
 
-    public ConnectionPoolException(Throwable cause) {
+    ConnectionPoolException(Throwable cause) {
         super(cause);
     }
 }

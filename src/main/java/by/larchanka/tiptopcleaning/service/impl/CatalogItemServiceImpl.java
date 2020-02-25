@@ -41,7 +41,7 @@ public class CatalogItemServiceImpl implements CatalogItemService {
     }
 
     @Override
-    public boolean deleteCatalogItemById(long id) throws ServiceException{
+    public boolean deleteCatalogItemById(long id) throws ServiceException {
         try {
             return dao.deleteCatalogItemById(id);
         } catch (DaoException e) {
@@ -50,7 +50,7 @@ public class CatalogItemServiceImpl implements CatalogItemService {
     }
 
     @Override
-    public Optional<CatalogItem> createCatalogItem(CatalogItem catalogItem) throws ServiceException{
+    public Optional<CatalogItem> createCatalogItem(CatalogItem catalogItem) throws ServiceException {
         try {
             return dao.createCatalogItem(catalogItem);
         } catch (DaoException e) {
@@ -59,7 +59,7 @@ public class CatalogItemServiceImpl implements CatalogItemService {
     }
 
     @Override
-    public Optional<CatalogItem> updateCatalogItem(CatalogItem catalogItem) throws ServiceException{
+    public Optional<CatalogItem> updateCatalogItem(CatalogItem catalogItem) throws ServiceException {
         try {
             return dao.updateCatalogItem(catalogItem);
         } catch (DaoException e) {

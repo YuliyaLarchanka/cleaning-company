@@ -7,32 +7,28 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ConnectionPool {
     private static final Logger logger = LogManager.getLogger();
 
-    private final int DEFAULT_POLL_SIZE = 5;
+    private static final int DEFAULT_POLL_SIZE = 5;
     private String poolSizeText = ConnectionParameter.getPollSize();
     private int pollSize = !StringUtils.isNullOrEmpty(poolSizeText) ? Integer.parseInt(poolSizeText) : DEFAULT_POLL_SIZE;
-
     private BlockingQueue<ProxyConnection> availableConnections;
-    private Queue<ProxyConnection> reservedConnections;
+    private BlockingQueue<ProxyConnection> reservedConnections;
 
     private static final ConnectionPool INSTANCE = new ConnectionPool();
 
-
     private ConnectionPool() {
-        createPoll();
     }
 
     public static ConnectionPool getInstance() {
         return INSTANCE;
     }
 
-    private void createPoll()  {
+    public void createPoll() throws ConnectionPoolException {
         availableConnections = new LinkedBlockingQueue<>(pollSize);
         reservedConnections = new LinkedBlockingQueue<>(pollSize);
 
@@ -45,10 +41,12 @@ public class ConnectionPool {
                     availableConnections.offer(new ProxyConnection(connection));
                 } catch (SQLException e) {
                     logger.fatal(e);
+                    throw new ConnectionPoolException(e);
                 }
             }
         } catch (ClassNotFoundException e) {
             logger.fatal(e);
+            throw new ConnectionPoolException(e);
         }
     }
 
@@ -65,31 +63,30 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void returnConnection(Connection connection) throws SQLException {
+    void returnConnection(Connection connection) throws SQLException {
         if (connection != null && !connection.isClosed() && connection instanceof ProxyConnection) {
             if (!connection.getAutoCommit()) {
                 logger.error("Attempt to return connection with disabled auto-commit {}", connection);
                 connection.rollback();
                 connection.setAutoCommit(true);
             }
-
             availableConnections.offer((ProxyConnection) connection);
             reservedConnections.remove(connection);
-        }else {
+        } else {
             Thread.currentThread().interrupt();
             logger.error("Release not ProxyConnection");
-            throw new RuntimeException();
+            throw new ConnectionCouldNotBeReturnedException();
         }
     }
 
-    public void destroyPool() throws InterruptedException {
+    public void destroyPool() throws ConnectionPoolException {
         for (int i = 0; i < availableConnections.size(); i++) {
             try {
                 ProxyConnection proxyConnection = availableConnections.take();
                 proxyConnection.realClose();
-            } catch (SQLException e) {
+            } catch (InterruptedException | SQLException e) {
                 logger.error(e);
-                throw new ExceptionInInitializerError(e);
+                throw new ConnectionPoolException(e);
             }
         }
     }

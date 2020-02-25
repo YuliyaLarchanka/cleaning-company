@@ -1,15 +1,11 @@
 package by.larchanka.tiptopcleaning.service;
 
 public class MessageConstant {
-    public static final String CLOSE_STATEMENT_ERROR = "Close statement error";
     public static final String VALIDATION_ERROR = "Validation error";
     public static final String CONFIRMATION_ERROR = "Confirmation error";
     public static final String AUTHENTICATION_ERROR = "Authentication error";
     public static final String NEGATIVE_MONEY_AMOUNT_ERROR = "Negative money amount error";
     public static final String SET_DATE_TIME_ERROR = "Set date time error";
-    public static final String ROLLBACK_ERROR = "Rollback error";
-    public static final String ORDER_CREATING_ERROR = "Order was not created";
-    public static final String RETURN_CONNECTION_ERROR = "Return connection error";
 
     public static final String KEY_USER_MISMATCH = "error.dao.user.mismatch";
     public static final String KEY_DEFAULT_ERROR = "error.common.default";

@@ -109,7 +109,7 @@ $('*[name=date]').handleDtpicker('hide');
 $('*[name=date]').handleDtpicker('getDate');
 
 // set the date
-$('*[name=date]').handleDtpicker('setDate', new Date(2019, 06, 11, 0, 0, 0));
+$('*[name=date]').handleDtpicker('setDate', new Date(2019, 0o6, 11, 0, 0, 0));
 
 // destroys the date picker
 $('*[name=date]').handleDtpicker('destroy');

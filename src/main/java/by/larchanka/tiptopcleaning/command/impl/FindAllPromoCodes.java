@@ -20,18 +20,18 @@ public class FindAllPromoCodes implements Command {
     public CommandResponse execute(HttpServletRequest request) {
         ServiceStorage factory = ServiceStorage.getInstance();
         PromoCodeService promoCodeService = factory.getPromoCodeService();
-
         CommandResponse commandResponse = new CommandResponse();
 
         try {
             List<PromoCode> promoCodeList = promoCodeService.findAllPromoCodes();
             request.setAttribute(PROMO_CODE_LIST, promoCodeList);
             commandResponse.setTargetURL(PATH_REAL_ALL_PROMO_CODES);
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_ERROR);
         }
+
         return commandResponse;
     }
 }

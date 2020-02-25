@@ -14,13 +14,6 @@ public class OrderItem {
         this.amount = amount;
     }
 
-    public OrderItem(long id, CatalogItem catalogItem, AccountOrder accountOrder, byte amount) {
-        this.id = id;
-        this.catalogItem = catalogItem;
-        this.accountOrder = accountOrder;
-        this.amount = amount;
-    }
-
     public long getId() {
         return id;
     }

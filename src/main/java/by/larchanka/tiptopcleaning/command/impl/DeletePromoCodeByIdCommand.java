@@ -19,9 +19,7 @@ public class DeletePromoCodeByIdCommand implements Command {
     public CommandResponse execute(HttpServletRequest request) {
         ServiceStorage creator = ServiceStorage.getInstance();
         PromoCodeService promoCodeService = creator.getPromoCodeService();
-
         long id = Long.parseLong(request.getParameter(PROMO_CODE_ID));
-
         CommandResponse commandResponse = new CommandResponse();
 
         try {

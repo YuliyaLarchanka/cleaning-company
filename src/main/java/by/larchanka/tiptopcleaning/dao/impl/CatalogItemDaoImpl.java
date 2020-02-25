@@ -60,6 +60,7 @@ public class CatalogItemDaoImpl implements CatalogItemDao {
         if (ids.isEmpty()) {
             return new ArrayList<>();
         }
+
         StringBuilder sbSql = new StringBuilder(GET_CATALOG_ITEM_LIST_BY_IDS);
         for (int i = 0; i < ids.size(); i++) {
             if (i > 0) {
@@ -76,6 +77,7 @@ public class CatalogItemDaoImpl implements CatalogItemDao {
             }
 
             ResultSet resultSet = statement.executeQuery();
+
             return parseResultSet(resultSet);
         } catch (ConnectionPoolException | SQLException e) {
             logger.error(e);

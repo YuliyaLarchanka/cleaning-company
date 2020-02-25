@@ -5,8 +5,8 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
-        <RollingFile name="RollingFile" fileName="D:\JavaWebDevelopmentCourse\tiptopcleaning\log\app.log"
-                     filePattern="D:\JavaWebDevelopmentCourse\tiptopcleaning\log\$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+        <RollingFile name="RollingFile" fileName="D:\JavaWebDevelopmentCourse\cleaningcompany\log\app.log"
+                     filePattern="D:\JavaWebDevelopmentCourse\cleaningcompany\log\$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 
             <PatternLayout>
                 <Pattern>%d %p %c [%t] %m%n</Pattern>

@@ -1,6 +1,6 @@
 package by.larchanka.tiptopcleaning.connection;
 
-public class ConnectionConstants {
+public class ConnectionConstant {
     static final String BUNDLE_NAME = "db";
     static final String DRIVER = "db.driver";
     static final String JDBC_URL = "db.jdbc_url";

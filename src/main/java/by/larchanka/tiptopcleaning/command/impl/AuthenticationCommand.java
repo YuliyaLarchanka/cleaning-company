@@ -27,21 +27,22 @@ public class AuthenticationCommand implements Command {
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();
-
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             Optional<User> userOptional = accountService.authenticateUser(email, password);
+
             if (userOptional.isPresent()) {
                 CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get(), KEY_AUTHENTICATION_SUCCESS);
             } else {
                 CommandHelper.processUserAuthenticationFailed(commandResponse, KEY_USER_MISMATCH, PATH_AUTHENTICATION);
             }
-
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_AUTHENTICATION);
         }
+
         return commandResponse;
     }
 }

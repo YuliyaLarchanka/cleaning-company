@@ -30,6 +30,7 @@ public class ChangeAccountOrderStatusCommand implements Command {
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountOrderService accountOrderService = creator.getAccountOrderService();
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             boolean isStatusChanged = accountOrderService.changeAccountOrderStatus(id, status);
 

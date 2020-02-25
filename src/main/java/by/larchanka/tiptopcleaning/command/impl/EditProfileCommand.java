@@ -46,7 +46,7 @@ public class EditProfileCommand implements Command {
         String floor = request.getParameter(FLOOR_NUMBER);
         String intercomCode = request.getParameter(INTERCOM_CODE);
         HttpSession session = request.getSession(true);
-        long userId = (long)session.getAttribute(USER_ID);
+        long userId = (long) session.getAttribute(USER_ID);
 
         User updatedUser = new User();
         updatedUser.setId(userId);
@@ -64,21 +64,20 @@ public class EditProfileCommand implements Command {
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();
-
-
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             Optional<User> optionalUser = accountService.updateUser(updatedUser, confirmationPassword);
 
-            if(optionalUser.isPresent()){
+            if (optionalUser.isPresent()) {
                 commandResponse.setMessage(KEY_UPDATE_PROFILE_SUCCESS);
                 commandResponse.setTargetURL(PATH_PROFILE);
-            }else{
+            } else {
                 commandResponse.setErrorStatus(true);
                 commandResponse.setMessage(KEY_UPDATE_PROFILE_ERROR);
                 commandResponse.setTargetURL(PATH_PROFILE);
             }
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_PROFILE);

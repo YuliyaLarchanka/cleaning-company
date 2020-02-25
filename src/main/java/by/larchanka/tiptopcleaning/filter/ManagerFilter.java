@@ -32,6 +32,7 @@ public class ManagerFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         UserType userType = (UserType) request.getSession().getAttribute(ACCOUNT_TYPE);
+
         if (userType != UserType.MANAGER) {
             response.sendRedirect(PATH_ERROR);
         } else {

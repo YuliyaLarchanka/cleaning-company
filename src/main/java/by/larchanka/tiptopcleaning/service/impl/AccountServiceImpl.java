@@ -72,7 +72,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public boolean changeUserType(long id, UserType type) throws ServiceException{
+    public boolean changeUserType(long id, UserType type) throws ServiceException {
         try {
             return dao.changeUserType(id, type);
         } catch (DaoException e) {
@@ -80,8 +80,8 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
-    public boolean addMoney(BigDecimal money, long id) throws ServiceException{
-        if(!serviceValidator.validateMoney(money)){
+    public boolean addMoney(BigDecimal money, long id) throws ServiceException {
+        if (!serviceValidator.validateMoney(money)) {
             return false;
         }
 

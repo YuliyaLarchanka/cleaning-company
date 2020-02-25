@@ -17,8 +17,8 @@ public class LogoutCommand implements Command {
     @Override
     public CommandResponse execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-
         CommandResponse commandResponse = new CommandResponse();
+
         if (session != null) {
             session.removeAttribute(USER_ID);
             session.removeAttribute(ACCOUNT_TYPE);
@@ -29,6 +29,7 @@ public class LogoutCommand implements Command {
             commandResponse.setTargetURL(PATH_ERROR);
             commandResponse.setTargetURL(KEY_DEFAULT_ERROR);
         }
+
         return commandResponse;
     }
 }

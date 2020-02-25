@@ -2,12 +2,12 @@ package by.larchanka.tiptopcleaning.connection;
 
 import java.util.ResourceBundle;
 
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.BUNDLE_NAME;
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.CONNECTION_COUNT;
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.DB_LOGIN;
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.DB_PASSWORD;
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.DRIVER;
-import static by.larchanka.tiptopcleaning.connection.ConnectionConstants.JDBC_URL;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.BUNDLE_NAME;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.CONNECTION_COUNT;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.DB_LOGIN;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.DB_PASSWORD;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.DRIVER;
+import static by.larchanka.tiptopcleaning.connection.ConnectionConstant.JDBC_URL;
 
 public class ConnectionParameter {
     private static final ConnectionParameter INSTANCE = new ConnectionParameter();

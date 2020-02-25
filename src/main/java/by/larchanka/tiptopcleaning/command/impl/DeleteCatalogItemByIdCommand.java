@@ -18,12 +18,10 @@ public class DeleteCatalogItemByIdCommand implements Command {
     @Override
     public CommandResponse execute(HttpServletRequest request) {
         ServiceStorage creator = ServiceStorage.getInstance();
-        CatalogItemService  catalogItemService = creator.getCatalogItemService();
-
+        CatalogItemService catalogItemService = creator.getCatalogItemService();
         long id = Long.parseLong(request.getParameter(CATALOG_ITEM_ID));
-
         CommandResponse commandResponse = new CommandResponse();
-        
+
         try {
             boolean isDeleted = catalogItemService.deleteCatalogItemById(id);
 

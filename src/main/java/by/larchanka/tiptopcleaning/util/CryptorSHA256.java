@@ -12,10 +12,16 @@ import static by.larchanka.tiptopcleaning.util.CommonConstant.SHA;
 public class CryptorSHA256 {
     private static final Logger logger = LogManager.getLogger();
 
-    public static String cryptWithSHA256(String pass) {
+    /**
+     * Encrypts string parameter
+     *
+     * @param password a {@code String} object to encrypt from
+     * @return encrypted {@code String} object
+     */
+    public static String cryptWithSHA256(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance(SHA);
-            byte[] hash = digest.digest(pass.getBytes(StandardCharsets.UTF_8));
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString = new StringBuilder();
 
             for (byte b : hash) {

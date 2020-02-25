@@ -23,8 +23,9 @@ public class FindUserInfoCommand implements Command {
         ServiceStorage factory = ServiceStorage.getInstance();
         AccountService accountService = factory.getAccountService();
 
-        long userId = (long)(request.getSession().getAttribute(USER_ID));
+        long userId = (long) (request.getSession().getAttribute(USER_ID));
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             Optional<User> userOptional = accountService.findUserById(userId);
 
@@ -32,12 +33,12 @@ public class FindUserInfoCommand implements Command {
                 User user = userOptional.get();
                 request.setAttribute(USER, user);
                 commandResponse.setTargetURL(PATH_REAL_PROFILE);
-            }else {
+            } else {
                 commandResponse.setErrorStatus(true);
                 commandResponse.setMessage(KEY_USER_NOT_FOUND);
                 commandResponse.setTargetURL(PATH_HOME);
             }
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_HOME);

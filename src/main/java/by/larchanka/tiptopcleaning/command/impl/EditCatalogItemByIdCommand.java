@@ -34,8 +34,8 @@ public class EditCatalogItemByIdCommand implements Command {
 
         UploadFileHelper uploadFileHelper = new UploadFileHelper();
         Optional<String> imageNameOptional = uploadFileHelper.uploadFile(request);
-
         String imageName;
+
         if (imageNameOptional.isPresent()) {
             imageName = imageNameOptional.get();
         } else {
@@ -55,18 +55,17 @@ public class EditCatalogItemByIdCommand implements Command {
         ServiceStorage creator = ServiceStorage.getInstance();
         CatalogItemService catalogItemService = creator.getCatalogItemService();
 
-
         try {
             Optional<CatalogItem> optionalCatalogItem = catalogItemService.updateCatalogItem(updatedCatalogItem);
 
-            if(optionalCatalogItem.isPresent()){
+            if (optionalCatalogItem.isPresent()) {
                 commandResponse.setMessage(KEY_UPDATE_CATALOG_ITEM_SUCCESS);
-            }else{
+            } else {
                 commandResponse.setErrorStatus(true);
                 commandResponse.setMessage(KEY_UPDATE_CATALOG_ITEM_ERROR);
             }
             commandResponse.setTargetURL(PATH_CATALOG_ITEMS);
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_CATALOG_ITEMS);

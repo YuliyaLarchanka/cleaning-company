@@ -39,11 +39,11 @@ public class RegistrationCommand implements Command {
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();
-
         CommandResponse commandResponse = new CommandResponse();
 
         try {
             Optional<User> userOptional = accountService.addUser(registerUser, confirmationPassword);
+
             if (userOptional.isPresent()) {
                 CommandHelper.processUserAuthenticationSuccess(request, commandResponse, userOptional.get(), KEY_REGISTRATION_SUCCESS);
             } else {

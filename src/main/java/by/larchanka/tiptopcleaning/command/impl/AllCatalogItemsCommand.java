@@ -20,14 +20,13 @@ public class AllCatalogItemsCommand implements Command {
     public CommandResponse execute(HttpServletRequest request) {
         ServiceStorage factory = ServiceStorage.getInstance();
         CatalogItemService catalogItemService = factory.getCatalogItemService();
-
         CommandResponse commandResponse = new CommandResponse();
 
         try {
             List<CatalogItem> catalogItemList = catalogItemService.getCatalogItemList();
             request.setAttribute(CATALOG_ITEM_LIST, catalogItemList);
             commandResponse.setTargetURL(PATH_REAL_CATALOG_ITEMS);
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_ERROR);

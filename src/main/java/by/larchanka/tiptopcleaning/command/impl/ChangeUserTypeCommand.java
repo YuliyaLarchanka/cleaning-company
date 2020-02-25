@@ -30,6 +30,7 @@ public class ChangeUserTypeCommand implements Command {
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             boolean isTypeChanged = accountService.changeUserType(id, type);
 

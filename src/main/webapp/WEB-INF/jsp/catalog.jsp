@@ -197,8 +197,7 @@
 
   });
 </script>
-<script>// image gallery
-// init the state from the input
+<script>
 $(".image-checkbox").each(function () {
   if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
     $(this).addClass('image-checkbox-checked');
@@ -215,7 +214,6 @@ $(".image-checkbox").on("click", function (e) {
 
   e.preventDefault();
 });
-//# sourceURL=pen.js
 </script>
 <script src="../../js/jquery.simple-dtpicker.js"></script>
 <link type="text/css" href="../../css/jquery.simple-dtpicker.css" rel="stylesheet"/>

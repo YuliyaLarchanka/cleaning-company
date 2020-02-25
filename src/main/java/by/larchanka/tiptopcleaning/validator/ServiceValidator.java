@@ -16,6 +16,8 @@ public class ServiceValidator {
 
     private static final ServiceValidator INSTANCE = new ServiceValidator();
 
+    private ServiceValidator(){}
+
     public static ServiceValidator getInstance() {
         return INSTANCE;
     }

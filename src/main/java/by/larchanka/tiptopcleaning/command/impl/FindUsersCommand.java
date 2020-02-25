@@ -26,7 +26,7 @@ public class FindUsersCommand implements Command {
             List<User> userList = accountService.findUsers();
             request.setAttribute(USER_LIST, userList);
             commandResponse.setTargetURL(PATH_REAL_USERS);
-        } catch (ServiceException e){
+        } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
             commandResponse.setTargetURL(PATH_ERROR);

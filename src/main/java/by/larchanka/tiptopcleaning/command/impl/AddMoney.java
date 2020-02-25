@@ -23,12 +23,12 @@ public class AddMoney implements Command {
     public CommandResponse execute(HttpServletRequest request) {
         BigDecimal money = BigDecimal.valueOf(Double.parseDouble(request.getParameter(MONEY)));
         HttpSession session = request.getSession(true);
-        long userId = (long)session.getAttribute(USER_ID);
+        long userId = (long) session.getAttribute(USER_ID);
 
         ServiceStorage creator = ServiceStorage.getInstance();
         AccountService accountService = creator.getAccountService();
-
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             boolean isMoneyAdded = accountService.addMoney(money, userId);
 
@@ -40,7 +40,6 @@ public class AddMoney implements Command {
                 commandResponse.setMessage(KEY_ADD_MONEY_ERROR);
                 commandResponse.setTargetURL(PATH_MONEY);
             }
-
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);

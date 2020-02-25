@@ -23,16 +23,14 @@ public class AddPromoCode implements Command {
         String value = request.getParameter(PROMO_CODE_VALUE);
         byte discount = Byte.parseByte(request.getParameter(PROMO_CODE_DISCOUNT));
 
-
         PromoCode promoCode = new PromoCode();
         promoCode.setValue(value);
         promoCode.setDiscountPercentage(discount);
 
         ServiceStorage creator = ServiceStorage.getInstance();
         PromoCodeService promoCodeService = creator.getPromoCodeService();
-
-
         CommandResponse commandResponse = new CommandResponse();
+
         try {
             Optional<PromoCode> optionalPromoCode = promoCodeService.addPromoCode(promoCode);
 
@@ -43,7 +41,6 @@ public class AddPromoCode implements Command {
                 commandResponse.setMessage(KEY_ADD_PROMO_CODE_ERROR);
             }
             commandResponse.setTargetURL(PATH_ALL_PROMO_CODES);
-
         } catch (ServiceException e) {
             commandResponse.setErrorStatus(true);
             commandResponse.setMessage(KEY_DEFAULT_ERROR);
