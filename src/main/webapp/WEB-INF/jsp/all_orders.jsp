@@ -90,34 +90,7 @@
 
         </ul>
     </nav>
-
-    <%--For displaying Previous link except for the 1st page --%>
-    <%--<c:if test="${currentPage != 1}">--%>
-    <%--<td><a href="all-orders?page=${currentPage - 1}">Previous</a></td>--%>
-    <%--</c:if>--%>
-
-    <%--&lt;%&ndash;For displaying Page numbers.--%>
-    <%--The when condition does not display a link for the current page&ndash;%&gt;--%>
-    <%--<table border="1" cellpadding="5" cellspacing="5">--%>
-    <%--<tr>--%>
-    <%--<c:forEach begin="1" end="${pagesCount}" var="i">--%>
-    <%--<c:choose>--%>
-    <%--<c:when test="${currentPage eq i}">--%>
-    <%--<td>${i}</td>--%>
-    <%--</c:when>--%>
-    <%--<c:otherwise>--%>
-    <%--<td><a href="all-orders?page=${i}">${i}</a></td>--%>
-    <%--</c:otherwise>--%>
-    <%--</c:choose>--%>
-    <%--</c:forEach>--%>
-    <%--</tr>--%>
-    <%--</table>--%>
-
-    <%--&lt;%&ndash;For displaying Next link &ndash;%&gt;--%>
-    <%--<c:if test="${currentPage lt pagesCount}">--%>
-    <%--<td><a href="all-orders?page=${currentPage + 1}">Next</a></td>--%>
-    <%--</c:if>--%>
 </div>
 </body>
-<%--<jsp:include page="/WEB-INF/jsp/footer.jsp"/>--%>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>
