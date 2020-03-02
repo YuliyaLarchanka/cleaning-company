@@ -9,13 +9,11 @@
 <fmt:message bundle="${loc}" key="local.error.page.little.message.500" var="littleMessage"/>
 
 <html>
-<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body class="container">
-<div>
+<div style="margin-left: 100px; margin-top: 20px">
     <h1 style="color:#CF0B15;" class="text-center"><c:out value="${title}"/></h1>
     <h3 class="text-center"><c:out value="${message}"/></h3>
     <h4 class="text-center"><c:out value="${littleMessage}"/></h4>
 </div>
 </body>
-<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

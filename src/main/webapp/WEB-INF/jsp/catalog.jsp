@@ -91,7 +91,7 @@
     </c:if>
 
     <form method="post" action="/controller">
-        <h3><c:out value="${yourApartment}"/></h3>
+        <h3 style="margin-bottom: 10px; margin-top: 20px"><c:out value="${yourApartment}"/></h3>
         <div class="row">
             <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
                 <c:if test="${catalogItem.multipleSupported eq true}">
@@ -115,13 +115,13 @@
         <div class="row">
             <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
                 <c:if test="${catalogItem.multipleSupported eq false}">
-                    <div class="col-sm">
+                    <div class="col-sm" style="margin-top: 20px">
                         <label class="image-checkbox">
                             <img class="img-responsive" src="../../img/items/<c:out value="${catalogItem.imageName}"/>"
                                  style="width: 250px; height: 250px">
                             <input name="single_item_id" value="<c:out value="${catalogItem.id}"/>" type="checkbox">
                             <i class="fa fa-check hidden"></i>
-                            <h4><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</h4>
+                            <p style="font-size: 20px"><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</p>
                         </label>
                     </div>
                 </c:if>
@@ -206,7 +206,7 @@ $(".image-checkbox").each(function () {
   }
 });
 
-// sync the state to the input
+
 $(".image-checkbox").on("click", function (e) {
   $(this).toggleClass('image-checkbox-checked');
   var $checkbox = $(this).find('input[type="checkbox"]');

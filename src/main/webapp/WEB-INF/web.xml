@@ -70,15 +70,6 @@
     <url-pattern>/authentication</url-pattern>
   </servlet-mapping>
 
-  <servlet>
-    <servlet-name>About</servlet-name>
-    <jsp-file>/WEB-INF/jsp/about.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>About</servlet-name>
-    <url-pattern>/about</url-pattern>
-  </servlet-mapping>
-
   <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>by.larchanka.tiptopcleaning.filter.EncodingFilter</filter-class>
@@ -155,6 +146,14 @@
     <url-pattern>/catalog-items</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>ControllerFilter</filter-name>
+    <filter-class>by.larchanka.tiptopcleaning.filter.ControllerFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ControllerFilter</filter-name>
+    <url-pattern>/controller</url-pattern>
+  </filter-mapping>
 
   <servlet>
     <servlet-name>Error</servlet-name>

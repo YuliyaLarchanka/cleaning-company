@@ -16,7 +16,7 @@
 <html>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body>
-<div class="container" style="margin-bottom: 100px">
+<div class="container" style="margin-bottom: 376px">
     <c:if test="${not (errorKey eq null)}">
         <fmt:message bundle="${loc}" key="${errorKey}" var="error" />
         <div class="alert alert-danger alert-dismissable">
@@ -35,7 +35,7 @@
     </c:if>
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="login-form">
+            <div class="login-form" style="margin-top: 20px">
                 <form method="post" action="/controller">
                     <h2 class="text-center" style="padding-block: 10px"><c:out value="${signIn}"/></h2>
                     <div class="form-group">
@@ -58,4 +58,5 @@
     </div>
 </div>
 </body>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

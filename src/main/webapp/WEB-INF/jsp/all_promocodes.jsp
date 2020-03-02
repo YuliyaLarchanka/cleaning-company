@@ -39,7 +39,7 @@
         <c:forEach var="promoCode" items="${requestScope.promoCodeList}">
             <div class="col-6">
                 <form method="post" action="/controller">
-                    <h4><c:out value="${name}"/> <c:out value="${promoCode.value}"/></h4>
+                    <h4 style="margin-top: 20px"><c:out value="${name}"/> <c:out value="${promoCode.value}"/></h4>
                     <p><c:out value="${discount}"/> <c:out value="${promoCode.discountPercentage}"/>%</p>
                     <button type="submit" class="btn btn-primary">Delete</button>
                     <input type="hidden" name="promo_code_id" value="<c:out value="${promoCode.id}"/>">

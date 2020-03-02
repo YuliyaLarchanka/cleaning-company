@@ -35,15 +35,15 @@
     </c:if>
     <div class="row">
         <c:forEach var="accountOrder" items="${requestScope.accountOrderList}">
-            <div class="col-6 border-warning">
-                <h3><fmt:formatDate value="${accountOrder.dateTime}" pattern="dd/MM/yyyy HH:mm"/></h3>
+            <div class="col-6 border-warning" style="margin-top: 20px">
+                <hr>
+                <h4><fmt:formatDate value="${accountOrder.dateTime}" pattern="dd/MM/yyyy HH:mm"/></h4>
                 <c:forEach var="orderItem" items="${accountOrder.orderItemList}">
                     <p><c:out value="${orderItem.catalogItem.name}"/> <c:out value="${orderItem.amount}"/></p>
                 </c:forEach>
                 <p><c:out value="${orderStatus}"/><c:out value="${accountOrder.orderStatus}"/></p>
-                <h4><c:out value="${orderStatus}"/><c:out value="${accountOrder.paymentMethod}"/></h4>
+                <p><c:out value="${paymentMethod}"/><c:out value="${accountOrder.paymentMethod}"/></p>
                 <h4><c:out value="${totalCost}"/><c:out value="${accountOrder.totalCost}"/> RUB</h4>
-                <div style="height: 20px"></div>
             </div>
         </c:forEach>
     </div>

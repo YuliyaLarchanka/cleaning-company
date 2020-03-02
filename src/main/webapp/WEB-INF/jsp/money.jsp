@@ -32,13 +32,14 @@
         </div>
     </c:if>
     <form class="form-horizontal" role="form" method="post" action="/controller">
-        <div class="col-md-8">
+        <div class="col-md-8" style="margin-bottom: 700px; margin-top: 20px">
             <h2><c:out value="${title}"/></h2>
-            <input class="form-control" autocomplete="off" min="1" max="5000" type="number" name="money" required/>
-            <button type="submit" class="btn"><c:out value="${button}"/></button>
+            <input class="form-control" autocomplete="off" min="1" max="5000" step="0.1" type="number" name="money" required/>
+            <button type="submit" class="btn" style="margin-top: 20px"><c:out value="${button}"/></button>
             <input type="hidden" name="command_name" value="add_money">
         </div>
     </form>
 </div>
 </body>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

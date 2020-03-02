@@ -93,13 +93,13 @@
     </c:if>
 
 
-    <h3><c:out value="${yourApartment}"/></h3>
+    <h3 style="margin-top: 20px"><c:out value="${yourApartment}"/></h3>
     <div class="row">
         <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
             <c:if test="${catalogItem.multipleSupported eq true}">
                 <div class="col-6">
                     <div style="margin-bottom: 60px; width: 300px">
-                        <label style="font-size: 20px"><c:out value="${catalogItem.name}"/> - <c:out
+                        <label style="font-size: 20px; margin-top: 10px"><c:out value="${catalogItem.name}"/> - <c:out
                                 value="${catalogItem.price}"/> RUB
                             <img class="img-responsive" src="../../img/items/<c:out value="${catalogItem.imageName}"/>"
                                  style="width: 280px; height: 280px"></label>
@@ -139,13 +139,13 @@
     <div class="row">
         <c:forEach var="catalogItem" items="${requestScope.catalogItemList}">
             <c:if test="${catalogItem.multipleSupported eq false}">
-                <div class="col-sm">
+                <div class="col-sm" style="margin-top: 20px; margin-bottom: 30px">
                     <label class="image-checkbox">
                         <img class="img-responsive" src="../../img/items/<c:out value="${catalogItem.imageName}"/>"
                              style="width: 250px; height: 250px">
                         <input name="single_item_id" value="<c:out value="${catalogItem.id}"/>" type="checkbox">
                         <i class="fa fa-check hidden"></i>
-                        <h4><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</h4>
+                        <p style="font-size: 20px"><c:out value="${catalogItem.name}"/> - <c:out value="${catalogItem.price}"/>RUB</p>
                     </label>
                     <div class="btn-toolbar">
                         <div class="btn-group">
@@ -173,7 +173,7 @@
     <br>
     </form>
 
-    <h1 style="margin-top: 20px"><c:out value="${newCataloItem}"/></h1>
+    <h1 style="margin-top: 50px"><c:out value="${newCataloItem}"/></h1>
 
     <div class="row">
         <div class="col-6">
@@ -208,7 +208,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Catalog item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -219,7 +219,7 @@
                     <input class="form-control" autocomplete="off" style="width: 300px;" minlength="2" maxlength="30" type="text" name="name"
                            id="name" required="required"/>
                     <label><c:out value="${price}"/></label>
-                    <input class="form-control" autocomplete="off" style="width: 300px;" min="1" max="200.0" type="number" name="price"
+                    <input class="form-control" autocomplete="off" style="width: 300px;" min="1" max="200.0" type="number" step="0.1" name="price"
                            id="price" required="required"/>
                     <input type="checkbox" name="multiple_supported" id="multiple_supported"/>
                     <label><c:out value="${multipleSupported}"/></label>
@@ -254,4 +254,5 @@
     modal.find('.modal-body #catalog_item_id').val(id);
   })
 </script>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </html>

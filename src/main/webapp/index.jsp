@@ -12,7 +12,6 @@
 <fmt:setBundle basename="local" var="loc"/>
 <fmt:message bundle="${loc}" key="local.home.title.large" var="largeTitle"/>
 <fmt:message bundle="${loc}" key="local.home.title.small" var="smallTitle"/>
-<fmt:message bundle="${loc}" key="local.home.page.room.cleaning.description" var="room"/>
 <fmt:message bundle="${loc}" key="local.home.page.what.we.clean" var="whatWeClean"/>
 <fmt:message bundle="${loc}" key="local.home.page.bedroom" var="bedroom"/>
 <fmt:message bundle="${loc}" key="local.home.page.bathroom" var="bathroom"/>
@@ -60,8 +59,8 @@
         </c:if>
         <div style="height: 200px"></div>
         <h1 class="text-center"><c:out value="${largeTitle}"/></h1>
-        <h4 class="text-center"><c:out value="${smallTitle}"/></h4>
-        <button class="btn btn-lg btn-outline-primary" style="margin-left: 460px; margin-top: 30px"><a href="/catalog"><c:out
+        <h3 class="text-center"><c:out value="${smallTitle}"/></h3>
+        <button class="btn btn-lg" style="margin-left: 460px; margin-top:19px"><a style="text-decoration: none;" href="/catalog"><c:out
                 value="${start}"/></a></button>
     </div>
 </div>

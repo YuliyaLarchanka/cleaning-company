@@ -20,7 +20,7 @@
 <html>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <body>
-<div class="container" style="margin-bottom: 160px">
+<div class="container" style="margin-bottom: 125px">
     <c:if test="${not (errorKey eq null)}">
         <fmt:message bundle="${loc}" key="${errorKey}" var="error" />
         <div class="alert alert-danger alert-dismissable">
@@ -38,7 +38,7 @@
         </div>
     </c:if>
     <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: 17px">
             <form method="post" action="/controller">
                 <h2><c:out value="${title}"/></h2>
                 <div class="form-group">

@@ -37,11 +37,12 @@
 
     <div class="row">
         <c:forEach var="accountOrder" items="${requestScope.orderList}">
-            <div class="col-6 border-warning" style="margin-bottom: 50px">
+            <div class="col-6 border-warning" style="margin-top: 50px">
                 <form method="post" action="/controller">
-                    <h3><fmt:formatDate value="${accountOrder.dateTime}" pattern="dd/MM/yyyy HH:mm"/></h3>
+                    <hr>
+                    <h4><fmt:formatDate value="${accountOrder.dateTime}" pattern="dd/MM/yyyy HH:mm"/></h4>
                     <c:forEach var="orderItem" items="${accountOrder.orderItemList}">
-                        <p><c:out value="${orderItem.catalogItem.name}"/> <c:out value="${orderItem.amount}"/></p>
+                        <p><c:out value="${orderItem.catalogItem.name}"/>: <c:out value="${orderItem.amount}"/></p>
                     </c:forEach>
 
                     <div class="form-group">
@@ -55,9 +56,9 @@
                         </select>
                     </div>
 
-                    <h4>Payment method: <c:out value="${accountOrder.paymentMethod}"/></h4>
-                    <h4>Total cost: <c:out value="${accountOrder.totalCost}"/> RUB</h4>
-                    <div style="height: 20px"></div>
+                    <p>Payment method: <c:out value="${accountOrder.paymentMethod}"/></p>
+                    <p>Total cost: <c:out value="${accountOrder.totalCost}"/> RUB</p>
+                    <div style="height: 10px"></div>
                     <button type="submit" class="btn btn-primary">Save</button>
                     <input type="hidden" name="account_order_id" value="<c:out value="${accountOrder.id}"/>">
                     <input type="hidden" name="command_name" value="change_status">
@@ -66,7 +67,7 @@
         </c:forEach>
     </div>
 
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" style="margin-top: 50px">
         <ul class="pagination">
 
             <c:if test="${currentPage != 1}">

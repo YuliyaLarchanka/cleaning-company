@@ -36,7 +36,7 @@
 
     <div class="row">
         <c:forEach var="user" items="${requestScope.userList}">
-            <div class="col-6 border-warning">
+            <div class="col-6 border-warning" style="margin-top: 18px">
                 <form method="post" action="/controller">
                     <h4>ID: <c:out value="${user.id}"/></h4>
                     <p>First name: <c:out value="${user.firstName}"/></p>
